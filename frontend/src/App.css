@@ -1,0 +1,61 @@
+
+body,html{
+  margin:0;
+  height: 100%;
+
+}
+.form-login{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 11%;
+
+}
+
+.format-input{
+  background-color:rgb(71, 48, 162);
+  padding: 5%;
+  width: 30%;
+  align-items: center;   /* <---- NEW    */
+  border: 2px solid black;
+}
+.format-input h1{
+  text-align: center;
+  color:white;
+}
+
+.format-input input{
+  width:100%;
+}
+
+
+
+#signin-container{
+  text-align:center;
+}
+
+.productsContainer{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+
+.productImg{
+
+  width: 100%; 
+
+}
+
+.product{
+  border: 0.1rem solid rgb(170, 168, 168);
+  width: 250px;
+  height: 410px;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+
+.productText{
+  margin-top: 1rem;
+}

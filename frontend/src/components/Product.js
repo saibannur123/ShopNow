@@ -9,9 +9,9 @@ export default function Product(props) {
 
   const addToCart = () => {
     
-    if(!inCart()){
+   // if(!inCart()){
       dispatch({type: "ADD_TO_CART", payload: props.value})
-    }   
+    //}   
   } 
 
   const removeFromCart = () => {
@@ -19,8 +19,9 @@ export default function Product(props) {
   
   }
 
-  const inCart = () => {
-    if(state.cart.find(item => item._id === props.value._id)){
+  const inCart = (propItem) => {
+    const data = state.cart.cartItems;
+    if( data.find(item => item._id === propItem.value._id)){
         return true;
     }
     return false;
@@ -35,8 +36,9 @@ export default function Product(props) {
         <div className="productText">
           <Link to={`/product/${props.value.slug}`}>{props.value.name}</Link>
           <p>${props.value.price}</p>
-          {inCart() ? <button className="removeCart" onClick={removeFromCart}>Remove from Cart</button> : <button className="addCart" onClick={addToCart}>Add to Cart</button>
+          {inCart(props) ? <button className="removeCart" onClick={removeFromCart}>Remove from Cart</button> : <button className="addCart" onClick={addToCart}>Add to Cart</button>
           }
+
         </div>   
     </div>
   )

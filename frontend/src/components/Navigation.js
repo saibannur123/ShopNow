@@ -20,7 +20,7 @@ export default function Navigation() {
             <Nav className="me-auto">       
             </Nav>
             <Nav>
-              <Nav.Link>Cart {state.cart.length > 0 ?<span className="cartNumber">{state.cart.length}</span> : ""}</Nav.Link>
+              { <Nav.Link>Cart {state.cart.cartItems.length > 0 ?<span className="cartNumber">{state.cart.cartItems.length}</span> : ""}</Nav.Link> }
             </Nav>
             <Nav>
               <Nav.Link href="/login-page">Sign in</Nav.Link>

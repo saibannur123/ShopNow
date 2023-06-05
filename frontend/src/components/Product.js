@@ -1,14 +1,17 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default function Product(props) {
   return (
     <div className="product">
          
-        <img className="productImg" src={props.value.image} alt={props.value.description}></img>
+         <Link to={`/${props.value.slug}`}>
+          <img className="productImg" src={props.value.image} alt={props.value.description}></img>
+        </Link>
         <div className="productText">
-        <a href="">{props.value.name}</a>
+        <Link to={`/${props.value.slug}`}>{props.value.name}</Link>
         <p>${props.value.price}</p>
-        <button>Add to Cart</button>
+        <button className="addCart">Add to Cart</button>
         </div>
     
     

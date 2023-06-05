@@ -1,8 +1,14 @@
 
 body,html{
   margin:0;
-  height: 100%;
+  background-image: linear-gradient(to right top, #fefefe, #fdfdfd, #fdfdfd, #fcfcfc, #fbfbfb);
+  background-attachment: fixed; /*edit*/
+}
 
+.App{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .form-login{
   display:flex;
@@ -39,6 +45,7 @@ body,html{
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin: 1rem;
+  padding-bottom: 3%;
 }
 
 .productImg{
@@ -48,7 +55,7 @@ body,html{
 }
 
 .product{
-  border: 0.1rem solid rgb(170, 168, 168);
+  border: 0.3rem double rgb(170, 168, 168);
   width: 250px;
   height: 410px;
   text-align: center;
@@ -58,4 +65,39 @@ body,html{
 
 .productText{
   margin-top: 1rem;
+}
+
+#imgContainer{
+  padding: 5%;
+}
+
+.bg {
+  background-image: url('https://images.pexels.com/photos/1884581/pexels-photo-1884581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1rem solid rgb(43, 28, 28);
+  min-height: 80vh;
+  margin-top: 3%;
+  
+} 
+
+.footerContainer{
+  background-color: rgb(36, 34, 34);
+  width: 100%;
+  padding: 2%;
+  color: white;
+  text-align: center;  
+  margin-top: auto;
+}
+
+.addCart{
+  background-color: rgb(231, 38, 38);
+  color: white;
+  border: none;
+  padding: 0 1rem;
+}
+
+.addCart:hover{
+  background-color: rgb(203, 17, 17);
 }

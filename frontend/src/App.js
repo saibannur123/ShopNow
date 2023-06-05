@@ -4,6 +4,7 @@ import Login from './screens/Login'
 import Home from './screens/Home'
 import Register from './screens/Register'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -11,16 +12,16 @@ function App() {
       <Navigation />
 
       <BrowserRouter>
-
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login-page" element={<Login />}></Route>
           <Route path="/register-page" element={<Register />}></Route>
-
-        </Routes>
-    
-      
+          <Route path="/:slug"></Route>
+        </Routes>     
       </BrowserRouter>
+
+      <Footer />
+      
     </div>
   );
 }

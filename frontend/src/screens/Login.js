@@ -35,23 +35,17 @@ export default function Login() {
 
   return (
        <div id="signin-container">
-        <div className="form-login">
-            
+        <div className="form-login">    
             <div className="format-input">
-            <h1>Login</h1>
-            <input type="text" placeholder='Email' onChange={(event) => setEmail(event.target.value)}></input> <br></br><br></br>
-            <input type="password" placeholder='Password' onChange={(event) => setPassword(event.target.value)}></input><br></br><br></br>
-            <Button className="login-button" onClick={login}>Submit</Button>
-            </div>
-        <br></br><br></br><br></br>
-
-  
-
-        </div><br></br>
-<br></br>        <span>Don't have an account?</span><Link to="/register-page">Register</Link>
-        <br></br>
-<br></br>        {signIn && <button onClick={userAuth} >Check if authorized</button> }
+                <h1>Login</h1>
+                <input type="text" placeholder='Email' onChange={(event) => setEmail(event.target.value)}></input> <br></br><br></br>
+                <input type="password" placeholder='Password' onChange={(event) => setPassword(event.target.value)}></input><br></br><br></br>
+                <Button className="login-button" onClick={login}>Submit</Button>
+            </div><br></br><br></br><br></br>
+        </div><br></br><br></br>        
+        <span>Don't have an account?</span><Link to="/register-page">Register</Link><br></br><br></br>        
+        {signIn && <button onClick={userAuth} >Check if authorized</button> }
         
-        </div>
+       </div>
   )
 }

@@ -8,15 +8,15 @@ import Nav from 'react-bootstrap/Nav';
 export default function Navigation() {
   return (
    
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
         <Container>
-          <Navbar.Brand href="/">Webber</Navbar.Brand>
+          <Navbar.Brand href="/">ShopNow</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">        
             </Nav>
             <Nav>
-              <Nav.Link href="/login-page">Sign-in</Nav.Link>
+              <Nav.Link href="/login-page">Sign in</Nav.Link>
               
             </Nav>
           </Navbar.Collapse>

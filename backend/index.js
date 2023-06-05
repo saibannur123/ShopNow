@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const User = require('./models/User');
 const ItemModel = require('./models/Items');
 const seedRouter = require('./routes/seed.js');
+const productRouter = require('./routes/productRoutes.js');
 
 dotenv.config();
 app.use(express.json());
@@ -21,6 +22,7 @@ try{
 }
 
 app.use("/api/seed", seedRouter)
+app.use("/api/products", productRouter);
 
 
 

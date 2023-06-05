@@ -9,6 +9,7 @@ const User = require('./models/User');
 const ItemModel = require('./models/Items');
 const seedRouter = require('./routes/seed.js');
 const productRouter = require('./routes/productRoutes.js');
+const slugRouter = require('./routes/slugRoutes');
 
 dotenv.config();
 app.use(express.json());
@@ -23,6 +24,7 @@ try{
 
 app.use("/api/seed", seedRouter)
 app.use("/api/products", productRouter);
+app.use("/api/slug", slugRouter);
 
 
 

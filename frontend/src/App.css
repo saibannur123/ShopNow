@@ -10,12 +10,19 @@ body,html{
   display: flex;
   flex-direction: column;
 }
+
+.loader{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .form-login{
   display:flex;
   justify-content: center;
   align-items: center;
   margin-top: 11%;
-
 }
 
 .format-input{
@@ -48,10 +55,8 @@ body,html{
   padding-bottom: 3%;
 }
 
-.productImg{
-
+.productImg {
   width: 100%; 
-
 }
 
 .product{
@@ -101,3 +106,31 @@ body,html{
 .addCart:hover{
   background-color: rgb(203, 17, 17);
 }
+
+.productScreenContainer{
+  margin-top: 8rem;
+  margin-bottom: 4rem;
+  text-align: center;
+  border: 5px double black;
+  padding: 1rem;
+  background-color: rgb(240, 240, 240);
+}
+.productScreenImg{
+  width: 500px;
+  
+}
+
+.productScreenImg img{
+  width: 100%;
+}
+
+.productScreenContent h5{
+  text-align: left;
+  padding: 0.3em;
+}
+
+
+
+
+
+

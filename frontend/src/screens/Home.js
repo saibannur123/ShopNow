@@ -59,7 +59,7 @@ export default function Home() {
           </div>
       <div className="productsContainer">
         {state.loader ? 
-            <h1>Loading</h1> : state.productz.map((data, index) => 
+            <h4>Loading...</h4> : state.productz.map((data, index) => 
           <Product value={data} key={index}/>
         )}
       </div>

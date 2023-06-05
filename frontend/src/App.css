@@ -107,6 +107,17 @@ body,html{
   background-color: rgb(203, 17, 17);
 }
 
+.removeCart{
+  background-color: rgb(38, 77, 231);
+  color: white;
+  border: none;
+  padding: 0 1rem;
+}
+
+.removeCart:hover{
+  background-color: rgb(12, 35, 163);
+}
+
 .productScreenContainer{
   margin-top: 8rem;
   margin-bottom: 4rem;
@@ -116,8 +127,7 @@ body,html{
   background-color: rgb(240, 240, 240);
 }
 .productScreenImg{
-  width: 500px;
-  
+  width: 500px; 
 }
 
 .productScreenImg img{
@@ -127,6 +137,13 @@ body,html{
 .productScreenContent h5{
   text-align: left;
   padding: 0.3em;
+}
+
+.cartNumber{
+  color:white;
+  background-color: rgb(219, 12, 12);
+  border-radius: 50%;
+  padding: 0 7px;
 }
 
 

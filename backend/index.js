@@ -30,7 +30,6 @@ app.use("/api/slug", slugRouter);
 
 const verifyJWT = (req, res, next) => {
     const auth = req.headers.authentication;
-
     if(!auth){
         res.send("WE need a token");
     }else{

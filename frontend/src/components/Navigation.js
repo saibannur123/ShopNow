@@ -14,6 +14,7 @@ export default function Navigation() {
     dispatch({type: "SIGN_OUT"});
     localStorage.removeItem("userInfo");
     localStorage.removeItem("cartItems");
+    localStorage.removeItem("token");
     window.location.href = "/login-page"
     
     

@@ -1,13 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext} from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Store } from '../Context/storeContext'
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signIn, setSignIn] = useState(false);
+  const { state, dispatch } = useContext(Store);
+ // const [signIn, setSignIn] = useState(false);
+ const navigate = useNavigate();
 
   const login = () => {
     axios
@@ -17,10 +20,14 @@ export default function Login() {
         console.log(response.data);
 
         if (response.data.auth) {
-          setSignIn(true);
-          localStorage.setItem("token", "Bearer " + response.data.token);
+          //setSignIn(true);
+          
+          response.data.token = "Bearer " + response.data.token;
+          localStorage.setItem("userInfo", response.data);
+          dispatch({type: "SIGN_IN", payload: response.data})
+          navigate('/');
         } else {
-          setSignIn(false);
+          //setSignIn(false);
         }
       });
   };
@@ -68,7 +75,7 @@ export default function Login() {
       <Link to="/register-page">Register</Link>
       <br></br>
       <br></br>
-      {signIn && <button onClick={userAuth}>Check if authorized</button>}
+      {/* {signIn && <button onClick={userAuth}>Check if authorized</button>} */}
     </div>
   );
 }

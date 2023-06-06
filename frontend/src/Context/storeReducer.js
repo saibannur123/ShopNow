@@ -19,12 +19,11 @@ export const storeReducer = (state, action) => {
             return { ...state, cart: { ...state.cart, cartItems } };
           }
 
-        case 'SIGN_IN':
-            console.log("SIGN_IN Reducer");
-            return;
+        case 'SIGN_IN': 
+            return {...state, userInfo: action.payload};
         case 'SIGN_OUT':
             console.log("SIGN_OUT Reducer");
-            return;
+            return {...state, userInfo: null }
         default:
             console.log("Return default state storeReducer");
             return state;

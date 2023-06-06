@@ -10,6 +10,15 @@ export default function Navigation() {
 
   const {state, dispatch} = useContext(Store);
 
+  const logOut = () => {
+    dispatch({type: "SIGN_OUT"});
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartItems");
+    window.location.href = "/login-page"
+    
+    
+  }
+
   return (
    
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
@@ -23,7 +32,8 @@ export default function Navigation() {
               { <Nav.Link>Cart {state.cart.cartItems.length > 0 ?<span className="cartNumber">{state.cart.cartItems.length}</span> : ""}</Nav.Link> }
             </Nav>
             <Nav>
-              <Nav.Link href="/login-page">Sign in</Nav.Link>
+              
+             {!state.userInfo ? <Nav.Link href="/login-page">Sign in</Nav.Link> : <Nav.Link onClick={logOut}>Log out</Nav.Link>}
             </Nav>
           </Navbar.Collapse>
         </Container>

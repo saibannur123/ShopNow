@@ -4,7 +4,6 @@ export const storeReducer = (state, action) => {
     switch(action.type){
         case 'ADD_TO_CART':
             const newItem = action.payload;
-            console.log("DATA", state.cart.cartItems);
             const existItem = state.cart.cartItems.find((item) => item._id === newItem._id);
 
             const cartItems = existItem ? state.cart.cartItems.map((item) => item._id === existItem._id ? newItem : item) : [...state.cart.cartItems, newItem]
@@ -20,7 +19,6 @@ export const storeReducer = (state, action) => {
             return { ...state, cart: { ...state.cart, cartItems } };
           }
 
-        
         case 'SIGN_IN':
             console.log("SIGN_IN Reducer");
             return;

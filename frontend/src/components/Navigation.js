@@ -30,7 +30,7 @@ export default function Navigation() {
             <Nav className="me-auto">       
             </Nav>
             <Nav>
-              { <Nav.Link>Cart {state.cart.cartItems.length > 0 ?<span className="cartNumber">{state.cart.cartItems.length}</span> : ""}</Nav.Link> }
+              { <Nav.Link href="/cart" >Cart {state.cart.cartItems.length > 0 ?<span className="cartNumber">{state.cart.cartItems.length}</span> : ""}</Nav.Link> }
             </Nav>
             <Nav>
               

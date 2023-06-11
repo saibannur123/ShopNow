@@ -22,6 +22,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         error: "error fetching data",
+        loader:false,
       };
     default:
       return state;
@@ -63,8 +64,10 @@ export default function ProductScreen() {
         const result = await axios.get(
           `http://localhost:3019/api/slug/${param}`
         );
+        console.log("SUCCESS");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data.data });
       } catch (err) {
+        console.log("ERROR");
         dispatch({ type: "FETCH_ERROR" });
       }
     };
@@ -75,7 +78,11 @@ export default function ProductScreen() {
     <div className="productScreen">
       {state.loader ? (
         <div className="loader">Loading...</div>
-      ) : (
+      ) : state.error !== "" ? (
+      
+      <div className="productScreenNotFound">
+        <h3>Product not found</h3>
+      </div>):(
         <Container className="productScreenContainer">
           <Row>
             <Col lg={6} className="productScreenImg">

@@ -139,6 +139,18 @@ body,html{
   padding: 0.3em;
 }
 
+.productScreenNotFound{
+  background-color: rgb(225, 154, 154);
+  border: 2px solid red;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 5rem;
+  padding: 1%;
+  margin-right: 3%;
+  margin-left: 3%;
+  color: rgb(178, 57, 57);
+}
+
 .cartNumber{
   color:white;
   background-color: rgb(219, 12, 12);

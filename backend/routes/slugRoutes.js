@@ -5,12 +5,17 @@ const mongoose = require("mongoose");
 
 slugRouter.get("/:id", async (req, res) => {
     const param = req.params.id;
-    try{
+    
         const product = await Item.findOne({"slug": param});
-        res.json({status: "sucess", data: product})
-    }catch(err){
-        res.json({status: "error", data: err})
-    }
+        if(product){
+            
+            res.status(200).json({status: "Success", data: product})
+        }else{
+            res.status(404).json({ status: 'Error', message: "Product not found" });
+        }
+        
+    
+
 });
 
 module.exports = slugRouter;

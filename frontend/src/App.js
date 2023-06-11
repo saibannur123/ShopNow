@@ -1,12 +1,14 @@
 import './App.css';
-import Navigation from './components/Navigation'
-import Login from './screens/Login'
-import Home from './screens/Home'
-import Register from './screens/Register'
+import Navigation from './components/Navigation';
+import Login from './screens/Login';
+import Home from './screens/Home';
+import Register from './screens/Register';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Footer from './components/Footer'
-import ProductScreen from './screens/ProductScreen'
+import Footer from './components/Footer';
+import ProductScreen from './screens/ProductScreen';
 import Cart from './screens/CartScreen';
+import ChangePassword from './screens/ChangePassword';
+import Protected from './components/Protected';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login-page" element={<Login />}></Route>
           <Route path="/register-page" element={<Register />}></Route>
+
+          <Route path="/change-password" element={<Protected><ChangePassword /> </Protected>}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/product/:slug" element={<ProductScreen />}></Route>
         </Routes>     

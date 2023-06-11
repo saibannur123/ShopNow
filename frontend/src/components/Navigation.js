@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Store } from '../Context/storeContext'
-import { useContext, useEffect} from 'react'
+import { useContext } from 'react'
 
 
 export default function Navigation() {
@@ -38,7 +38,7 @@ export default function Navigation() {
              {!state.userInfo ? <Nav.Link href="/login-page">Sign in</Nav.Link> : 
              
              <NavDropdown title={state.userInfo.name} id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="/change-password">Change Password</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logOut}>Log Out</NavDropdown.Item>
              </NavDropdown>}

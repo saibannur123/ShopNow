@@ -8,7 +8,7 @@ import { Store } from '../Context/storeContext'
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
   const [signIn, setSignIn] = useState(false);
  const navigate = useNavigate();
 

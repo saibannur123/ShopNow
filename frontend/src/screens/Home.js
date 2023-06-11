@@ -1,7 +1,7 @@
 import React from 'react';
 import Product from "../components/Product";
 import axios from "axios";
-import { useState, useEffect, useReducer} from "react";
+import { useEffect, useReducer} from "react";
 
 const productReducer = (state, action) => {
   switch(action.type){

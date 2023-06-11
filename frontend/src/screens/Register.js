@@ -5,13 +5,14 @@ import axios from 'axios'
 
 export default function Register() {
 
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
 
     const register = () => {
-        axios.post("http://localhost:3019/register", {email, password}).then((response) => {
+        axios.post("http://localhost:3019/register", {name, email, password}).then((response) => {
             console.log(response);
             console.log(response.data);
         })
@@ -22,6 +23,7 @@ export default function Register() {
             
     <div className="format-input">
     <h1>Register</h1>
+    <input type="text" placeholder='Name' onChange={(event) => setName(event.target.value)}></input> <br></br><br></br>
     <input type="text" placeholder='Email' onChange={(event) => setEmail(event.target.value)}></input> <br></br><br></br>
     <input type="password" placeholder='Password' onChange={(event) => setPassword(event.target.value)}></input><br></br><br></br>
     <input type="password" placeholder='Confirm Password' onChange={(event) => setConfirmPassword(event.target.value)}></input><br></br><br></br>

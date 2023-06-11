@@ -21,8 +21,7 @@ export default function Login() {
 
         if (response.data.auth) {
           setSignIn(true);
-          
-          localStorage.setItem("userInfo", response.data);
+          localStorage.setItem("userInfo", JSON.stringify(response.data));
           localStorage.setItem("token", "Beared " + response.data.token);
           dispatch({type: "SIGN_IN", payload: response.data})
          navigate('/');

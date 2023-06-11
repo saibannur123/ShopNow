@@ -33,6 +33,10 @@ export default function CartScreen() {
                                     <span>
                                     <img className="cartScreenImg" src={item.image} alt={item.name}/>
                                     <a href="" className="cartScreenName">{item.name}</a>
+                                    <span className="cartScreenQuantity">
+                                        <button>-</button>
+                                        <button>+</button>
+                                    </span>
                                     <span className="cartScreenPrice">${item.price}</span>
                                     <span><button className="cartScreenRemove" onClick={() => removeItem(item)}>Remove</button></span>
                                     </span>

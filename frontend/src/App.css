@@ -198,7 +198,6 @@ body,html{
   text-align: left;
 }
 
-
 @media only screen and (max-width: 780px) {
 
  .cartScreenItem {
@@ -224,7 +223,6 @@ body,html{
   .cartScreenRemove{
     margin:0;
   }
-
 }
 
 @media only screen and (max-width: 500px) {
@@ -251,6 +249,27 @@ body,html{
   min-width: 275px;
   margin: 2%;
 }
+
+.searchContainer{
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.searchColOne{
+  padding: 2%;
+}
+
+.searchColTwo{
+  padding: 2%;
+}
+
+.searchColTwo h4{
+  text-align: left;
+}
+
+
+
+
 
 
 

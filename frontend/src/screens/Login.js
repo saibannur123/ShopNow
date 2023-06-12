@@ -1,16 +1,16 @@
 import React from "react";
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Store } from '../Context/storeContext'
+import { Store } from "../Context/storeContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { dispatch } = useContext(Store);
   const [signIn, setSignIn] = useState(false);
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const login = () => {
     axios
@@ -23,8 +23,8 @@ export default function Login() {
           setSignIn(true);
           localStorage.setItem("userInfo", JSON.stringify(response.data));
           localStorage.setItem("token", "Beared " + response.data.token);
-          dispatch({type: "SIGN_IN", payload: response.data})
-         navigate('/');
+          dispatch({ type: "SIGN_IN", payload: response.data });
+          navigate("/");
         } else {
           setSignIn(false);
         }
@@ -35,7 +35,7 @@ export default function Login() {
     axios
       .get("http://localhost:3019/isAuth", {
         headers: {
-          authentication: (localStorage.getItem("token")),
+          authentication: localStorage.getItem("token"),
         },
       })
       .then((res) => {});

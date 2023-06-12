@@ -59,7 +59,7 @@ export default function CartScreen() {
                         <strong>ITEMS:</strong> {cartItems.length}
                         </Card.Text>
                         <Card.Text>
-                        <h4><strong>SUBTOTAL COST:</strong> ${totalCost}</h4>
+                        <strong>SUBTOTAL COST:</strong> ${totalCost}
                         </Card.Text>
                         <Card.Text>
                         <button>Checkout</button>

@@ -19,6 +19,12 @@ productRouter.get("/", async (req, res) => {
     }
 })
 
+productRouter.get("/:id", async (req, res) => {
+   // console.log(req.params)
+    const data = await Item.findById({_id: req.params.id})
+    res.send(data);
+})
+
 productRouter.get("/category", async (req, res) => {
 
     try {
@@ -45,16 +51,22 @@ productRouter.get("/category", async (req, res) => {
 })
 
 productRouter.get("/search", async (req, res) => {
-     const { category, query, rating, option, page} = req.query;
+    const { category, query, price, rating, option, page} = req.query;
     const pageC = page ? page : 1;
     const andArray = {};
     const sort = {};
 
-    if(category && category !== 'all'){
+
+    if(category && category !== 'all' ){
         andArray.category = category;
     }
 
-    // fitler by price
+    // TODO: Website can break if user changes the URL, so its -50, or 50-, or something that doesnt follow this syntax: #-# or #
+    if(price && price !== 'all' && price.includes('-')){
+        andArray.price = {$gte : Number(price.split('-')[0]), $lte : Number(price.split('-')[1])}
+    }else if(price && price !== 'all' && !price.includes('-')){
+        andArray.price = {$gte : Number(price)}
+    }
 
     if(query && query  !== 'all'){
         andArray.name = query; //  double check this?

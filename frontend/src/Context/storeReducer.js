@@ -2,6 +2,7 @@ export const storeReducer = (state, action) => {
     switch (action.type) {
       case "ADD_TO_CART":
         console.log("State", state)
+        console.log("Payload", action.payload)
         const newItem = action.payload;
         const existItem = state.cart.cartItems.find(
           (item) => item.value._id === newItem.value._id

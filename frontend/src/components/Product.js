@@ -7,14 +7,9 @@ import axios from "axios";
 export default function Product(props) {
   const { state, dispatch } = useContext(Store);
 
-  // const addToCart = () => {
-  //   // if(!inCart()){
-  //   dispatch({ type: "ADD_TO_CART", payload: props.value });
-  //   //}
-  // };
   const { product } = props;
 
-
+  // TODO: WHEN CHANGING THE QUANTITY FEATURE, I MAY HAVE INTRODUCED SOME BUGS! WATCH OUT
   const addToCart = async (item) => {
     console.log("ITEM", item)
     console.log(state.cart)

@@ -2,9 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Item = require("../models/Items");
 const productRouter = express.Router();
+const app = express();
+var cors = require('cors');
+app.use(express.json());
+
+app.use(cors({origin: true, credentials: true}));
 
 productRouter.get("/", async (req, res) => {
-
+    
     try {
         const data = await Item.find({});
         res.json({
@@ -19,11 +24,6 @@ productRouter.get("/", async (req, res) => {
     }
 })
 
-productRouter.get("/:id", async (req, res) => {
-   // console.log(req.params)
-    const data = await Item.findById({_id: req.params.id})
-    res.send(data);
-})
 
 productRouter.get("/category", async (req, res) => {
 
@@ -49,6 +49,8 @@ productRouter.get("/category", async (req, res) => {
         })
     }
 })
+
+
 
 productRouter.get("/search", async (req, res) => {
     const { category, query, price, rating, option, page} = req.query;
@@ -101,5 +103,11 @@ productRouter.get("/search", async (req, res) => {
     }
 
 })
+
+productRouter.get("/:id", async (req, res) => {
+    // console.log(req.params)
+     const data = await Item.findById({_id: req.params.id})
+     res.send(data);
+ })
 
 module.exports = productRouter;

@@ -68,10 +68,12 @@ export default function Search() {
     const fetchCategory = async () => {
       const result = await axios.get(
         "http://localhost:3019/api/products/category"
-      );
+      )
       setCategoryList(result.data.data);
     };
     fetchCategory();
+
+    
   }, []);
 
   const getFilterURL = (filterType) => {

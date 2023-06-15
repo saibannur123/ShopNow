@@ -38,8 +38,32 @@ export default function ProductScreen() {
   });
   const { state: stxte, dispatch: dxpatch } = useContext(Store);
 
-  const addToCart = () => {
-    dxpatch({ type: "ADD_TO_CART", payload: state.product });
+//   const addToCart = () => {
+//     dxpatch({ type: "ADD_TO_CART", payload: state.product });
+//   };
+
+
+  const addToCart = async () => {
+    console.log("STATE", state);
+    console.log("STXTE", stxte)
+    const existItem = stxte.cart.cartItems.find((x) => x.value._id === state.product._id);
+   console.log("ExistItem", existItem)
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    console.log(existItem ? existItem.quantity + 1 : 1)
+    // TODO: Introduce this code below similar to AMAZON website example
+    // TODO: BUG NOT READING IN/LOADING IN ALL DATA INTO CART!!
+   const { data } = await axios.get(`http://localhost:3019/api/products/${state.product._id}`);
+    console.log("Quantity", quantity)
+    if (data.inStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+    console.log("...state.product", state.product)
+    const obj = {value: state.product} // fix this MESS
+    dxpatch({
+      type: 'ADD_TO_CART',
+      payload: { ...obj, quantity },
+    });
   };
 
   const removeFromCart = () => {

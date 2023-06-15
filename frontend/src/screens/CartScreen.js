@@ -12,6 +12,25 @@ export default function CartScreen() {
     dispatch({ type: "REMOVE_FROM_CART", payload: item });
   };
 
+  const incQuantity = (item) => {
+
+    const quantity =  item.quantity + 1;
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: { ...item, quantity },
+    });
+
+  }
+
+  const decQuantity = (item) => {
+    const quantity =  item.quantity - 1;
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: { ...item, quantity },
+    });
+
+  }
+
   useEffect(() => {
     let tempPrice = 0;
     cartItems.map((item) => (tempPrice += (item.value.price * item.quantity)));
@@ -23,7 +42,6 @@ export default function CartScreen() {
       <Row>
         <Col lg={8}>
           <h1>Your Shopping Cart</h1> <hr></hr>
-          {console.log(cartItems)}
           {cartItems.map((item, index) => (
             <div className="cartScreenItem" key={index}>
               <span>
@@ -36,8 +54,10 @@ export default function CartScreen() {
                   {item.value.name}
                 </a>
                 <span className="cartScreenQuantity">
-                  <button>-</button>
-                  <button>+</button>
+                { item.quantity == 1 ? <button disabled>-</button> : <button onClick={() => decQuantity(item)}>-</button>}
+                  {item.quantity}
+                  {/* TODO: Change so it pulls  inStock from database so it is the latest */}
+                 { item.quantity == item.value.inStock ? <button disabled>+</button> : <button onClick={() => incQuantity(item)}>+</button>} 
                 </span>
                 <span className="cartScreenPrice">${item.value.price}</span>
                 <span>
@@ -45,7 +65,7 @@ export default function CartScreen() {
                     className="cartScreenRemove"
                     onClick={() => removeItem(item)}
                   >
-                    Remove
+                    X
                   </button>
                 </span>
               </span>

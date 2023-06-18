@@ -277,6 +277,19 @@ body,html{
   text-align: left;
 }
 
+.shippingScreenContainer{
+  margin-top: 5rem;
+}
+
+.shippingScreenContainer{
+  text-align: center;
+  width: 100%;
+}
+
+.shippingScreenContainer input{
+  width: 30%;
+}
+
 
 
 

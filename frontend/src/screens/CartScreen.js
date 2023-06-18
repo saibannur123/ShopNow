@@ -31,6 +31,10 @@ export default function CartScreen() {
 
   }
 
+  const redirectToShipping = () => {
+    window.location.href = "/shipping";
+  }
+
   useEffect(() => {
     let tempPrice = 0;
     cartItems.map((item) => (tempPrice += (item.value.price * item.quantity)));
@@ -91,7 +95,7 @@ export default function CartScreen() {
                 <strong>SUBTOTAL COST:</strong> ${totalCost}
               </Card.Text>
               <Card.Text>
-                <button>Checkout</button>
+                <button onClick={() => redirectToShipping()}>Checkout</button>
               </Card.Text>
             </Card.Body>
           </Card>

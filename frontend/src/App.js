@@ -10,6 +10,7 @@ import Cart from "./screens/CartScreen";
 import ChangePassword from "./screens/ChangePassword";
 import Protected from "./components/Protected";
 import Search from "./screens/Search";
+import ShippingScreen from "./screens/ShippingScreen"
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/product/:slug" element={<ProductScreen />}></Route>
+          <Route path="/shipping" element={ <Protected><ShippingScreen />{" "} </Protected>}></Route>
           <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
       </BrowserRouter>

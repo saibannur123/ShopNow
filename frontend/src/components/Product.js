@@ -11,8 +11,6 @@ export default function Product(props) {
 
   // TODO: WHEN CHANGING THE QUANTITY FEATURE, I MAY HAVE INTRODUCED SOME BUGS! WATCH OUT
   const addToCart = async (item) => {
-    console.log("ITEM", item)
-    console.log(state.cart)
     const existItem = state.cart.cartItems.find((x) => x.value._id === props.value._id);
     console.log("cart", state.cart.cartItems)
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -20,9 +18,6 @@ export default function Product(props) {
     // TODO: Introduce this code below similar to AMAZON website example
     // TODO: BUG NOT READING IN/LOADING IN ALL DATA INTO CART!!
    const { data } = await axios.get(`http://localhost:3019/api/products/${item.value._id}`);
-   console.log("data", data);
-   console.log(quantity);
-
 
     if (data.inStock < quantity) {
       window.alert('Sorry. Product is out of stock');
@@ -59,15 +54,6 @@ export default function Product(props) {
       <div className="productText">
         <Link to={`/product/${props.value.slug}`}>{props.value.name}</Link>
         <p>${props.value.price}</p>
-        {/* {inCart(props) ? (
-          <button className="removeCart" onClick={removeFromCart}>
-            Remove from Cart
-          </button>
-        ) : (
-          <button className="addCart" onClick={addToCart}>
-            Add to Cart
-          </button>
-        )} */}
             <button className="addCart" onClick={() => addToCart(props)}>
             Add to Cart
           </button>

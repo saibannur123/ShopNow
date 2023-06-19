@@ -11,6 +11,7 @@ const seedRouter = require('./routes/seed.js');
 const productRouter = require('./routes/productRoutes.js');
 const slugRouter = require('./routes/slugRoutes');
 const userRouter = require('./routes/userRoutes');
+const orderRouter = require('./routes/orderRoutes')
 
 dotenv.config();
 app.use(express.json());
@@ -26,30 +27,32 @@ try{
 app.use("/api/user", userRouter);
 app.use("/api/seed", seedRouter);
 app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
 app.use("/api/slug", slugRouter);
 
 
 
-const verifyJWT = (req, res, next) => {
-    const auth = req.headers.authentication;
-    if(!auth){
-        res.send("WE need a token");
-    }else{
-        const token = auth.slice(7, auth.length);
-        jwt.verify(token, process.env.SECRET, (err, decoded) => {
-            if(err){
-                res.json({auth: false, message: "You failed to authenticate"});
-            }else{
-                req.email = decoded.email;
-                next();
-            }
-        })
-    }
-}
+//  const verifyJWT = (req, res, next) => {
+//     const auth = req.headers.authentication;
+//     if(!auth){
+//         res.send("WE need a token");
+//     }else{
+//         const token = auth.slice(7, auth.length);
+//         jwt.verify(token, process.env.SECRET, (err, decoded) => {
+//             if(err){
+//                 res.json({auth: false, message: "You failed to authenticate"});
+//             }else{
+//                 req.email = decoded.email;
+//                 next();
+//             }
+//         })
+//     }
+// }
 
-app.get('/isAuth', verifyJWT, (req, res) =>{
-    res.send("You are authorized");
-})
+
+// app.get('/isAuth', verifyJWT, (req, res) =>{
+//     res.send("You are authorized");
+// })
 
 app.post('/register', async (req, res) => {
 
@@ -70,7 +73,7 @@ app.post('/login-user', async (req, res) => {
   
     if(passwordMatch){
         const token = jwt.sign({email: user.email}, process.env.SECRET);
-        res.json({auth: true, token: token, email: user.email, name:user.name});
+        res.json({auth: true, token: token, email: user.email, name:user.name, user_id: user._id});
     }else{
         res.json({auth: false, message: "No user exists"});
     }
@@ -81,3 +84,4 @@ app.post('/login-user', async (req, res) => {
 app.listen(3019, () =>{
     console.log("server running at port 3019");
 })
+

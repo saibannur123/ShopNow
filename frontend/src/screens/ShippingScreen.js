@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { Store} from '../Context/storeContext'
 
 export default function ShippingScreen() {
 
     const localInfo = JSON.parse(localStorage.getItem("shippingInfo"));
-   // console.log("n", n);
     const [name, setName] = useState(localInfo ? localInfo.name :  "");
     const [address, setAddress] = useState(localInfo ? localInfo.address :  "");
     const [city, setCity] = useState(localInfo ? localInfo.city :  "");
     const [postalCode, setPostalCode] = useState(localInfo ? localInfo.postalCode :  "");
     const [country, setCountry] = useState(localInfo ? localInfo.country :  "");
+    const navigate = useNavigate();
+    const {state, dispatch} = useContext(Store);
 
     const validateShipping = () => {
         if(name == ""){
@@ -26,9 +29,10 @@ export default function ShippingScreen() {
             alert("Enter country")
         }else{
             const shippingInfo = {name, address, city, postalCode, country};
+            dispatch({type: 'ADD_SHIPPING_ADDRESS', action: {name, address, city, postalCode, country}})
             localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo));
+            navigate("/placeorder")
         }
-
     }
 
 

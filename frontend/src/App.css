@@ -290,6 +290,54 @@ body,html{
   width: 30%;
 }
 
+.placeOrderScreenContainer{
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+}
+
+.placeOrderShipping{
+  width: 100%;
+  border: 2px solid rgb(195, 195, 195);
+  padding: 30px;
+  margin-bottom: 10px;
+}
+
+
+.placeOrderItems{
+  width: 100%;
+  border: 2px solid rgb(195, 195, 195);
+  padding: 10px;
+}
+
+.placeOrderItem{
+  padding: 20px;
+  margin: 10px;
+}
+
+.placeOrderItem img{
+  width: 75px;
+  border: 1px solid rgb(192, 189, 189);
+}
+
+.placeOrderItem span{
+  margin-left: 3%;
+}
+
+.placeOrderItem .placeOrderQuanPrice{
+  margin-left: 30%;
+}
+
+.placeOrder{
+  border: 1px solid rgb(192, 189, 189);
+  padding: 18px;
+}
+
+
+
+
+
+
+
 
 
 

@@ -32,7 +32,12 @@ export const storeReducer = (state, action) => {
         return { ...state, userInfo: action.payload };
       case "SIGN_OUT":
         console.log("SIGN_OUT Reducer");
-        return { ...state, userInfo: null };
+        return { ...state, userInfo: null, cart: {cartItems: [], shippingInfo: {}, }, };
+      case "ADD_SHIPPING_ADDRESS":
+        return {
+          ...state, 
+          cart: {...state.cart, shippingInfo: action.payload},
+        }
       default:
         console.log("Return default state storeReducer");
         return state;

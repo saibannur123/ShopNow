@@ -5,17 +5,19 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Store } from "../Context/storeContext";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navigation() {
   const { state, dispatch } = useContext(Store);
+  const navigate = useNavigate();
 
   const logOut = () => {
     dispatch({ type: "SIGN_OUT" });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("cartItems");
+    localStorage.removeItem('shippingInfo');
     localStorage.removeItem("token");
-    window.location.href = "/login-page";
+    navigate("/login-page");
   };
 
   return (

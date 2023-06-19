@@ -11,6 +11,7 @@ import ChangePassword from "./screens/ChangePassword";
 import Protected from "./components/Protected";
 import Search from "./screens/Search";
 import ShippingScreen from "./screens/ShippingScreen"
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/search" element={<Search />}></Route>
           <Route path="/product/:slug" element={<ProductScreen />}></Route>
           <Route path="/shipping" element={ <Protected><ShippingScreen />{" "} </Protected>}></Route>
+          <Route path="/placeorder" element={ <Protected><PlaceOrderScreen />{" "} </Protected>}></Route>
           <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
       </BrowserRouter>

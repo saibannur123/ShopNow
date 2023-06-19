@@ -24,7 +24,7 @@ export default function PlaceOrderScreen() {
 
     const navigate = useNavigate();
     const { state: stxte, dispatch: dxpatch } = useContext(Store);
-    const [state, dispatch] = useReducer(reducer, {loader: false})
+    const [ state, dispatch ] = useReducer(reducer, {loader: false})
     const shippingInfo = stxte.cart.shippingInfo;
     const [subTotal, setSubTotal] = useState(0);
     const [tax, setTax] = useState(0);

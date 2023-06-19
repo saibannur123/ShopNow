@@ -7,7 +7,6 @@ import axios from "axios";
 export default function Product(props) {
   const { state, dispatch } = useContext(Store);
 
-  const { product } = props;
 
   // TODO: WHEN CHANGING THE QUANTITY FEATURE, I MAY HAVE INTRODUCED SOME BUGS! WATCH OUT
   const addToCart = async (item) => {
@@ -29,17 +28,17 @@ export default function Product(props) {
     });
   };
 
-  const removeFromCart = () => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: props.value });
-  };
+  // const removeFromCart = () => {
+  //   dispatch({ type: "REMOVE_FROM_CART", payload: props.value });
+  // };
 
-  const inCart = (propItem) => {
-    const data = state.cart.cartItems;
-    if (data.find((item) => item._id === propItem.value._id)) {
-      return true;
-    }
-    return false;
-  };
+  // const inCart = (propItem) => {
+  //   const data = state.cart.cartItems;
+  //   if (data.find((item) => item._id === propItem.value._id)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
 
   return (
     <div className="product">

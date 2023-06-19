@@ -39,7 +39,7 @@ export default function CartScreen() {
     let tempPrice = 0;
     cartItems.map((item) => (tempPrice += (item.value.price * item.quantity)));
     setTotalCost(tempPrice);
-  });
+  }, [cartItems]);
 
   return (
     <Container className="cartContainer">
@@ -54,14 +54,15 @@ export default function CartScreen() {
                   src={item.value.image}
                   alt={item.value.name}
                 />
-                <a href="" className="cartScreenName">
+                {/* TODO: Add href below */}
+                <a href="true" className="cartScreenName">
                   {item.value.name}
                 </a>
                 <span className="cartScreenQuantity">
-                { item.quantity == 1 ? <button disabled>-</button> : <button onClick={() => decQuantity(item)}>-</button>}
+                { item.quantity === 1 ? <button disabled>-</button> : <button onClick={() => decQuantity(item)}>-</button>}
                   {item.quantity}
                   {/* TODO: Change so it pulls  inStock from database so it is the latest */}
-                 { item.quantity == item.value.inStock ? <button disabled>+</button> : <button onClick={() => incQuantity(item)}>+</button>} 
+                 { item.quantity === item.value.inStock ? <button disabled>+</button> : <button onClick={() => incQuantity(item)}>+</button>} 
                 </span>
                 <span className="cartScreenPrice">${item.value.price}</span>
                 <span>

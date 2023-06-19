@@ -39,7 +39,7 @@ export default function Search() {
     error: "",
   });
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams(); // deleted setSearchParams here? 
   const [categoryList, setCategoryList] = useState([]);
   const navigate = useNavigate();
   const category = searchParams.get("category") || "all";

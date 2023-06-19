@@ -11,21 +11,21 @@ export default function ShippingScreen() {
     const [postalCode, setPostalCode] = useState(localInfo ? localInfo.postalCode :  "");
     const [country, setCountry] = useState(localInfo ? localInfo.country :  "");
     const navigate = useNavigate();
-    const {state, dispatch} = useContext(Store);
+    const {dispatch} = useContext(Store);
 
     const validateShipping =  () => {
-        if(name == ""){
+        if(name === ""){
             alert("Enter name")
-        }else if(address == ""){
+        }else if(address === ""){
             alert("Enter address")
 
-        }else if(city == ""){
+        }else if(city === ""){
             alert("Enter city")
 
-        }else if(postalCode == ""){
+        }else if(postalCode === ""){
             alert("Enter postal code")
 
-        }else if(country == ""){
+        }else if(country === ""){
             alert("Enter country")
         }else{
             const shippingInfo = {name, address, city, postalCode, country};

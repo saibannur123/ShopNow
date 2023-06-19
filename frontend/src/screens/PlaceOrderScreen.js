@@ -125,7 +125,7 @@ export default function PlaceOrderScreen() {
                         <span>Shipping: $0.00</span><hr></hr> 
                         <span>Tax: ${tax}</span> <hr></hr>
                         <span><strong>Total: ${total}</strong></span><hr></hr>
-                        <button onClick={createPayout}>Payout</button>
+                       {stxte.cart.cartItems.length == 0 ? <button disabled>Payout</button> : <button onClick={createPayout}>Payout</button> } 
                     </div>
 
                 </Col>

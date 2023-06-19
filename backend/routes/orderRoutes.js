@@ -20,15 +20,26 @@ orderRouter.post("/", verifyJWT,  async (req, res) => {
         user: req.body.user.user_id,
 
     });
-
-
    const order = await newOrder.save();
    if(order){
     res.status(200).send({ message: 'New Order Created', order });
    }else{
     res.status(400).send({ message: 'There has been a problem creating your order'});
    }
+})
 
+orderRouter.get("/:id", verifyJWT, async (req, res) => {
+
+    
+    const result = await Order.find({_id: req.params.id})
+    
+    if(result){
+        res.status(200).send({message: "Found order", order: result})
+    }else{
+        res.status(400).send({message: "Error finding the object", error: "Error finding the order info"})
+    }
+
+    
 })
 
 

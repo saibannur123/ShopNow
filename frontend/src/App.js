@@ -12,6 +12,7 @@ import Protected from "./components/Protected";
 import Search from "./screens/Search";
 import ShippingScreen from "./screens/ShippingScreen"
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/product/:slug" element={<ProductScreen />}></Route>
-          <Route path="/order/:order" element={<div>Hey</div>}></Route>
+          <Route path="/order/:order" element={<Protected><OrderScreen></OrderScreen></Protected>}></Route>
           <Route path="/shipping" element={ <Protected><ShippingScreen />{" "} </Protected>}></Route>
           <Route path="/placeorder" element={ <Protected><PlaceOrderScreen />{" "} </Protected>}></Route>
           <Route path="*" element={<Navigate to="/"></Navigate>}></Route>

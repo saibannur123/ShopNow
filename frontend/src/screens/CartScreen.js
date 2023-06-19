@@ -96,7 +96,7 @@ export default function CartScreen() {
                 <strong>SUBTOTAL COST:</strong> ${totalCost}
               </Card.Text>
               <Card.Text>
-                <button onClick={() => redirectToShipping()}>Checkout</button>
+               { state.cart.cartItems.length == 0 ? <button disabled >Checkout</button> : <button onClick={() => redirectToShipping()}>Checkout</button> }
               </Card.Text>
             </Card.Body>
           </Card>

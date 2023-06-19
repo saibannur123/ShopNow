@@ -13,7 +13,7 @@ export default function ShippingScreen() {
     const navigate = useNavigate();
     const {state, dispatch} = useContext(Store);
 
-    const validateShipping = () => {
+    const validateShipping =  () => {
         if(name == ""){
             alert("Enter name")
         }else if(address == ""){
@@ -29,8 +29,8 @@ export default function ShippingScreen() {
             alert("Enter country")
         }else{
             const shippingInfo = {name, address, city, postalCode, country};
-            dispatch({type: 'ADD_SHIPPING_ADDRESS', action: {name, address, city, postalCode, country}})
             localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo));
+            dispatch({type: 'ADD_SHIPPING_ADDRESS', payload: {name, address, city, postalCode, country}})
             navigate("/placeorder")
         }
     }

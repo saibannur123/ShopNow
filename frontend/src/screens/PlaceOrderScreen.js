@@ -7,7 +7,7 @@ export default function PlaceOrderScreen() {
 
     const navigate = useNavigate();
     const { state, dispatch } = useContext(Store);
-    const shippingInfo = state.cart.shippingAddress;
+    const shippingInfo = state.cart.shippingInfo;
     const [subTotal, setSubTotal] = useState(0);
     const [tax, setTax] = useState(0);
     const [total, setTotal] = useState(0);
@@ -26,7 +26,7 @@ export default function PlaceOrderScreen() {
         let tx; 
         state.cart.cartItems.map((item, index) => calculation += item.quantity * item.value.price)
         setSubTotal(calculation.toFixed(2));
-        tx = calculation * 0.13;
+        tx = (calculation * 0.13).toFixed(2);
         tot = tx + calculation;
         setTax(tx)
         setTotal(tot)

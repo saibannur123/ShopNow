@@ -337,6 +337,37 @@ body,html{
   margin-bottom: 2rem;
 }
 
+.OrderHistoryScreen{
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+td, th {
+  border: 5px solid black;
+  text-align: left;
+  padding: 10px;
+}
+
+.OrderHistoryTable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1%;
+
+}
+
+
+
+
+
 
 
 

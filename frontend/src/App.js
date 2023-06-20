@@ -13,6 +13,7 @@ import Search from "./screens/Search";
 import ShippingScreen from "./screens/ShippingScreen"
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import OrderHistory from "./screens/OrderHistoryScreen";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/order/:order" element={<Protected><OrderScreen></OrderScreen></Protected>}></Route>
           <Route path="/shipping" element={ <Protected><ShippingScreen />{" "} </Protected>}></Route>
           <Route path="/placeorder" element={ <Protected><PlaceOrderScreen />{" "} </Protected>}></Route>
+          <Route path="/orderhistory" element={ <Protected><OrderHistory />{" "} </Protected>}></Route>
           <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
       </BrowserRouter>

@@ -60,6 +60,9 @@ export default function Navigation() {
               </Nav.Link>
             ) : (
               <NavDropdown title={state.userInfo.name} id="basic-nav-dropdown">
+                 <NavDropdown.Item as={Link} to="/orderhistory">
+                  Order History
+                </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/change-password">
                   Change Password
                 </NavDropdown.Item>

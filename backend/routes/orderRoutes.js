@@ -4,6 +4,16 @@ const mongoose = require("mongoose");
 const Order = require("../models/Order");
 const verifyJWT = require("../utils.js");
 
+orderRouter.get("/history", verifyJWT, async (req, res) => {
+    
+    const result = await Order.find({user: req.query.user})
+    if(result){
+        res.status(200).json({message: "All orders found", orders: result})
+    }else{
+        res.status(400).json({message: "Orders were not found"})
+    }
+})
+
 orderRouter.post("/", verifyJWT,  async (req, res) => {
     let orderItem = req.body.orderItems.map((x) => ({...x.value}));
     orderItem.forEach((element,index) => {

@@ -85,7 +85,7 @@ export default function OrderHistoryScreen() {
                 <tr key={key}>
                 <td>{item._id}</td>
                 <td>{(item.createdAt).substring(0,10)}</td>
-                <td>{item.totalPrice}</td>
+                <td>${item.totalPrice}</td>
                 <td>{item.isPaid ? "Yes" : "No"}</td>
                 <td>{item.isDelivered ? "Yes" : "No"}</td>
                 <td><Link to={`/order/${item._id}`}>ACTION</Link></td>

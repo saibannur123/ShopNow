@@ -47,6 +47,21 @@ export default function OrderScreen() {
         fetchOrder();
     }, [orderId, stxte.userInfo])
 
+    const payOrder = async () => {
+        console.log("HERE")
+        try{
+        const result = await axios.post(`http://localhost:3019/api/orders/${orderId}/payment`, {}, { headers: {authorization: `Bearer ${stxte.userInfo.token}`}})
+        if(result.status === 200){
+            console.log("success", result)
+            window.location.href = result.data.url
+        }else{
+            console.log("Fail", result)
+        }
+        }catch(err){
+            console.log("ERR", err)
+        }
+    }
+
 
   return (
 <>
@@ -90,6 +105,7 @@ export default function OrderScreen() {
                     <span>Tax: ${state.order[0].taxPrice}</span> <hr></hr>
                     <span><strong>Total: ${state.order[0].totalPrice}</strong></span><hr></hr>
                     {/* {stxte.cart.cartItems.length == 0 ? <button disabled>Payout</button> : <button onClick={createPayout}>Payout</button> }  */}
+                    <button onClick={payOrder}>Pay with Stripe</button>
                 </div>
                 
 

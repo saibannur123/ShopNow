@@ -12,7 +12,8 @@ const productRouter = require('./routes/productRoutes.js');
 const slugRouter = require('./routes/slugRoutes');
 const userRouter = require('./routes/userRoutes');
 const orderRouter = require('./routes/orderRoutes')
-
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 dotenv.config();
 app.use(express.json());
 app.use(cors());

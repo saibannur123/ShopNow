@@ -47,16 +47,28 @@ export default function OrderScreen() {
         fetchOrder();
     }, [orderId, stxte.userInfo])
 
+
     const payOrder = async () => {
         console.log("HERE")
         try{
         const result = await axios.post(`http://localhost:3019/api/orders/${orderId}/payment`, {}, { headers: {authorization: `Bearer ${stxte.userInfo.token}`}})
+       
         if(result.status === 200){
-            console.log("success", result)
-            window.location.href = result.data.url
+            //  const updatePaid = await axios.post(`http://localhost:3019/api/orders/${orderId}/paid`, {url: result.data.url}, { headers: {authorization: `Bearer ${stxte.userInfo.token}`}})
+            // if(updatePaid.status === 200){
+                // console.log("success", result)
+                window.location.href = result.data.url
+            // }else{
+            //     console.log("Faield to update", updatePaid.data.error);
+            //     window.location.href = result.data.url;
+            // }
+            // console.log("RESL", result);
+
         }else{
             console.log("Fail", result)
         }
+
+
         }catch(err){
             console.log("ERR", err)
         }
@@ -105,7 +117,7 @@ export default function OrderScreen() {
                     <span>Tax: ${state.order[0].taxPrice}</span> <hr></hr>
                     <span><strong>Total: ${state.order[0].totalPrice}</strong></span><hr></hr>
                     {/* {stxte.cart.cartItems.length == 0 ? <button disabled>Payout</button> : <button onClick={createPayout}>Payout</button> }  */}
-                    <button onClick={payOrder}>Pay with Stripe</button>
+                   { state.order[0].isPaid ? "" : <button onClick={payOrder}>Pay with Stripe</button> }
                 </div>
                 
 

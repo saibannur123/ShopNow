@@ -7,6 +7,8 @@ const dotenv = require("dotenv")
 dotenv.config();
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const axios = require("axios")
+const bodyParser = require('body-parser');
+
 
 orderRouter.get("/history", verifyJWT, async (req, res) => {
     
@@ -64,21 +66,70 @@ orderRouter.post("/:orderId/payment", verifyJWT, async (req, res) => {
                     product_data: {
                         name: item.name
                     },
-                unit_amount: (item.price * 100)
+                unit_amount: ((item.price + (item.price * 0.13)) * 100)
                 },
                 quantity: item.quantity
             }
         }),
-        success_url: `${process.env.SERVER_URL}`,
-        cancel_url: `${process.env.SERVER_URL}`,
+        success_url: `${process.env.SERVER_URL}/success`,
+        cancel_url: `${process.env.SERVER_URL}/order/${orderId}/`,
+        metadata: {
+        orderId: orderId, // pass in the orderID for later retrieval
+        }
 
        })
+
+        
        res.status(200).json({url: session.url})
     }catch(err){
         res.status(500).json({error: err.message});
     }
+})
 
 
+orderRouter.post("/stripe-webhook", bodyParser.raw({ type: 'application/json' }), async (req, res) => {
+
+    const endpointSecret = 'whsec_ea1fa76ec3adad66b93aebf08e4b33b2c5105cfdaf12e0b122e03c07d92e75ea';
+
+    const sig = req.headers['stripe-signature'];
+
+    let event = req.body;
+    // const rawBody = req.body.toString(); 
+  
+    // try {
+    //   // Verify the signature of the incoming webhook event
+    //   event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
+    // } catch (error) {
+    //   console.error(error);
+    //   return res.status(400).send('Webhook Error: Invalid signature');
+    // }
+
+    switch(event.type){
+        case 'checkout.session.completed':
+            const orderId = event.data.object.metadata.orderId;
+            try{
+            await Order.findByIdAndUpdate({_id: orderId}, {isPaid: true})
+            }catch(err){
+                console.log("Error updating order isPaid", err)
+            }
+            break;
+        default:
+            console.log(`Unhandled event type: ${event.type}`);
+    }
+    res.sendStatus(200);
+})
+
+
+orderRouter.post("/:id/paid", verifyJWT, async (req, res) => {
+    const orderId = req.params.id;
+
+    console.log("GETS HERE", req.body.url)
+    try{
+   // await Order.updateOne({_id: orderId}, {isPaid: true})
+    res.status(200).send( "successfully updated paid status")
+    }catch(err){
+        res.status(404).send({message: "error updating paid status", error: err})
+    }
 })
 
 

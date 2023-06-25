@@ -11,23 +11,35 @@ const bodyParser = require('body-parser');
 
 
 orderRouter.get("/history", verifyJWT, async (req, res) => {
-    
-    const result = await Order.find({user: req.query.user})
-    if(result){
-        res.status(200).json({message: "All orders found", orders: result})
-    }else{
-        res.status(400).json({message: "Orders were not found"})
+
+    const result = await Order.find({
+        user: req.query.user
+    })
+    if (result) {
+        res.status(200).json({
+            message: "All orders found",
+            orders: result
+        })
+    } else {
+        res.status(400).json({
+            message: "Orders were not found"
+        })
     }
 })
 
-orderRouter.post("/", verifyJWT,  async (req, res) => {
-    let orderItem = req.body.orderItems.map((x) => ({...x.value}));
-    orderItem.forEach((element,index) => {
+orderRouter.post("/", verifyJWT, async (req, res) => {
+    let orderItem = req.body.orderItems.map((x) => ({
+        ...x.value
+    }));
+    orderItem.forEach((element, index) => {
         element.quantity = req.body.orderItems[index].quantity;
-      });
-   orderItem.quantity = req.body.orderItems.quantity;
+    });
+    orderItem.quantity = req.body.orderItems.quantity;
     const newOrder = new Order({
-        orderItems: orderItem.map((x) => ({ ...x, product: x._id })),
+        orderItems: orderItem.map((x) => ({
+            ...x,
+            product: x._id
+        })),
         shippingInfo: req.body.shippingInfo,
         itemsPrice: req.body.itemsPrice,
         shippingPrice: req.body.shippingPrice,
@@ -36,58 +48,73 @@ orderRouter.post("/", verifyJWT,  async (req, res) => {
         user: req.body.user.user_id,
 
     });
-   const order = await newOrder.save();
-   if(order){
-    res.status(200).send({ message: 'New Order Created', order });
-   }else{
-    res.status(400).send({ message: 'There has been a problem creating your order'});
-   }
+    const order = await newOrder.save();
+    if (order) {
+        res.status(200).send({
+            message: 'New Order Created',
+            order
+        });
+    } else {
+        res.status(400).send({
+            message: 'There has been a problem creating your order'
+        });
+    }
 })
 
 orderRouter.post("/:orderId/payment", verifyJWT, async (req, res) => {
     const orderId = req.params.orderId; // the order id 
 
     // find all items in order (price and quantity)
-    const allItemsWhole = await axios.get(`http://localhost:3019/api/orders/${orderId}`, { headers: {authorization: req.headers.authorization}})
+    const allItemsWhole = await axios.get(`http://localhost:3019/api/orders/${orderId}`, {
+        headers: {
+            authorization: req.headers.authorization
+        }
+    })
     const allItems = allItemsWhole.data.order[0].orderItems
     console.log("AllItems", allItems)
 
 
     // start stripe payment
-    
-    try{
-       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        mode: "payment",
-        line_items: allItems.map(item => {
-            return{
-                price_data:{
-                    currency: 'usd',
-                    product_data: {
-                        name: item.name
+
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            mode: "payment",
+            line_items: allItems.map(item => {
+                return {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: {
+                            name: item.name
+                        },
+                        unit_amount: ((item.price + (item.price * 0.13)) * 100)
                     },
-                unit_amount: ((item.price + (item.price * 0.13)) * 100)
-                },
-                quantity: item.quantity
+                    quantity: item.quantity
+                }
+            }),
+            success_url: `${process.env.SERVER_URL}/product/success`,
+            cancel_url: `${process.env.SERVER_URL}/order/${orderId}/`,
+            metadata: {
+                orderId: orderId, // pass in the orderID for later retrieval
             }
-        }),
-        success_url: `${process.env.SERVER_URL}/success`,
-        cancel_url: `${process.env.SERVER_URL}/order/${orderId}/`,
-        metadata: {
-        orderId: orderId, // pass in the orderID for later retrieval
-        }
 
-       })
+        })
 
-        
-       res.status(200).json({url: session.url})
-    }catch(err){
-        res.status(500).json({error: err.message});
+
+        res.status(200).json({
+            url: session.url
+        })
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        });
     }
 })
 
 
-orderRouter.post("/stripe-webhook", bodyParser.raw({ type: 'application/json' }), async (req, res) => {
+orderRouter.post("/stripe-webhook", bodyParser.raw({
+    type: 'application/json'
+}), async (req, res) => {
 
     const endpointSecret = 'whsec_ea1fa76ec3adad66b93aebf08e4b33b2c5105cfdaf12e0b122e03c07d92e75ea';
 
@@ -95,7 +122,7 @@ orderRouter.post("/stripe-webhook", bodyParser.raw({ type: 'application/json' })
 
     let event = req.body;
     // const rawBody = req.body.toString(); 
-  
+
     // try {
     //   // Verify the signature of the incoming webhook event
     //   event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
@@ -104,12 +131,16 @@ orderRouter.post("/stripe-webhook", bodyParser.raw({ type: 'application/json' })
     //   return res.status(400).send('Webhook Error: Invalid signature');
     // }
 
-    switch(event.type){
+    switch (event.type) {
         case 'checkout.session.completed':
             const orderId = event.data.object.metadata.orderId;
-            try{
-            await Order.findByIdAndUpdate({_id: orderId}, {isPaid: true})
-            }catch(err){
+            try {
+                await Order.findByIdAndUpdate({
+                    _id: orderId
+                }, {
+                    isPaid: true
+                })
+            } catch (err) {
                 console.log("Error updating order isPaid", err)
             }
             break;
@@ -120,33 +151,26 @@ orderRouter.post("/stripe-webhook", bodyParser.raw({ type: 'application/json' })
 })
 
 
-orderRouter.post("/:id/paid", verifyJWT, async (req, res) => {
-    const orderId = req.params.id;
-
-    console.log("GETS HERE", req.body.url)
-    try{
-   // await Order.updateOne({_id: orderId}, {isPaid: true})
-    res.status(200).send( "successfully updated paid status")
-    }catch(err){
-        res.status(404).send({message: "error updating paid status", error: err})
-    }
-})
-
-
 orderRouter.get("/:id", verifyJWT, async (req, res) => {
 
-    
-    const result = await Order.find({_id: req.params.id})
-    
-    if(result){
-        res.status(200).send({message: "Found order", order: result})
-    }else{
-        res.status(400).send({message: "Error finding the object", error: "Error finding the order info"})
+
+    const result = await Order.find({
+        _id: req.params.id
+    })
+
+    if (result) {
+        res.status(200).send({
+            message: "Found order",
+            order: result
+        })
+    } else {
+        res.status(400).send({
+            message: "Error finding the object",
+            error: "Error finding the order info"
+        })
     }
-    
+
 })
-
-
 
 
 

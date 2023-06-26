@@ -13,31 +13,28 @@ export default function CartScreen() {
   };
 
   const incQuantity = (item) => {
-
-    const quantity =  item.quantity + 1;
+    const quantity = item.quantity + 1;
     dispatch({
-      type: 'ADD_TO_CART',
+      type: "ADD_TO_CART",
       payload: { ...item, quantity },
     });
-
-  }
+  };
 
   const decQuantity = (item) => {
-    const quantity =  item.quantity - 1;
+    const quantity = item.quantity - 1;
     dispatch({
-      type: 'ADD_TO_CART',
+      type: "ADD_TO_CART",
       payload: { ...item, quantity },
     });
-
-  }
+  };
 
   const redirectToShipping = () => {
     window.location.href = "/shipping";
-  }
+  };
 
   useEffect(() => {
     let tempPrice = 0;
-    cartItems.map((item) => (tempPrice += (item.value.price * item.quantity)));
+    cartItems.map((item) => (tempPrice += item.value.price * item.quantity));
     setTotalCost(tempPrice);
   }, [cartItems]);
 
@@ -59,10 +56,18 @@ export default function CartScreen() {
                   {item.value.name}
                 </a>
                 <span className="cartScreenQuantity">
-                { item.quantity === 1 ? <button disabled>-</button> : <button onClick={() => decQuantity(item)}>-</button>}
+                  {item.quantity === 1 ? (
+                    <button disabled>-</button>
+                  ) : (
+                    <button onClick={() => decQuantity(item)}>-</button>
+                  )}
                   {item.quantity}
                   {/* TODO: Change so it pulls  inStock from database so it is the latest */}
-                 { item.quantity === item.value.inStock ? <button disabled>+</button> : <button onClick={() => incQuantity(item)}>+</button>} 
+                  {item.quantity === item.value.inStock ? (
+                    <button disabled>+</button>
+                  ) : (
+                    <button onClick={() => incQuantity(item)}>+</button>
+                  )}
                 </span>
                 <span className="cartScreenPrice">${item.value.price}</span>
                 <span>
@@ -96,7 +101,11 @@ export default function CartScreen() {
                 <strong>SUBTOTAL COST:</strong> ${totalCost}
               </Card.Text>
               <Card.Text>
-               { state.cart.cartItems.length == 0 ? <button disabled >Checkout</button> : <button onClick={() => redirectToShipping()}>Checkout</button> }
+                {state.cart.cartItems.length == 0 ? (
+                  <button disabled>Checkout</button>
+                ) : (
+                  <button onClick={() => redirectToShipping()}>Checkout</button>
+                )}
               </Card.Text>
             </Card.Body>
           </Card>

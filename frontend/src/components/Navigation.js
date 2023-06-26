@@ -15,7 +15,7 @@ export default function Navigation() {
     dispatch({ type: "SIGN_OUT" });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("cartItems");
-    localStorage.removeItem('shippingInfo');
+    localStorage.removeItem("shippingInfo");
     localStorage.removeItem("token");
     navigate("/login-page");
   };
@@ -23,7 +23,7 @@ export default function Navigation() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <Container>
-        <Navbar.Brand as={Link} to="/" >
+        <Navbar.Brand as={Link} to="/">
           ShopNow
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -41,10 +41,10 @@ export default function Navigation() {
                   ""
                 )} */}
                 {state.cart.cartItems.length > 0 && (
-                       <span className="cartNumber">
-                        {state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                      </span>
-                    )}
+                  <span className="cartNumber">
+                    {state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                  </span>
+                )}
               </Nav.Link>
             }
           </Nav>
@@ -60,7 +60,7 @@ export default function Navigation() {
               </Nav.Link>
             ) : (
               <NavDropdown title={state.userInfo.name} id="basic-nav-dropdown">
-                 <NavDropdown.Item as={Link} to="/orderhistory">
+                <NavDropdown.Item as={Link} to="/orderhistory">
                   Order History
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/change-password">

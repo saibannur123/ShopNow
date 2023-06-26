@@ -1,74 +1,61 @@
-
 body,html{
   margin:0;
   background-image: linear-gradient(to right top, #fefefe, #fdfdfd, #fdfdfd, #fcfcfc, #fbfbfb);
-  background-attachment: fixed; /*edit*/
+  background-attachment: fixed;
+ /*edit*/
 }
-
 .App{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
 .loader{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-
 .form-login{
   display:flex;
   justify-content: center;
   align-items: center;
   margin-top: 7rem;
 }
-
 .login-icon{
   font-size: 105px;
 }
-
 .format-input{
   color: black;
   width: 60%;
   height: 90%;
-  align-items: center;   /* <---- NEW    */
+  align-items: center;
+ /* <---- NEW */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding-bottom: 1.5rem;
-
 }
-
-
 .format-input h1{
   text-align: center;
   font-size: 60px;
   padding-top:20px;
   font-weight: 100;
-
 }
-
 .format-input input{
   width:60%;
 }
-
-
 #signin-container{
   text-align:center;
   margin-bottom: 3rem;
 }
-
 .alert{
   width: 50%;
   display: inline;
   margin: auto;
   text-align: center;
 }
-
 .login-button{
-  margin-top: 2rem;;
+  margin-top: 2rem;
+ ;
 }
-
 .log-button{
   display: inline-block;
   padding: 12px 24px;
@@ -83,30 +70,23 @@ body,html{
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
-
 .log-button:hover {
   background-color: #333;
 }
-
 .log-button:active {
   background-color: #666;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-
 .login-input-container{
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-
 }
-
 .register-now-prompt{
   margin-top: 2rem;
-
 }
-
 .login-inputs {
   display: block;
   width: 100%;
@@ -119,54 +99,41 @@ body,html{
   transition: box-shadow 0.3s ease;
   height: 40px;
 }
-
 .login-inputs:focus {
   outline: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 123, 255, 0.5);
 }
-
 .login-inputs::placeholder {
   color: #aaa;
 }
-
 .login-inputs:-ms-input-placeholder {
   color: #aaa;
-
 }
-
 .login-inputs::-ms-input-placeholder {
   color: #aaa;
-
 }
-
 @media only screen and (max-width: 900px) {
   .format-input{
-   width: 90%;
-  }
+      width: 90%;
+ }
 }
 @media only screen and (max-width: 700px) {
   .format-input h1{
-    text-align: center;
-    font-size: 50px;
-  
-  }
+      text-align: center;
+      font-size: 50px;
+ }
   .format-input input{
-    width: 90%;
-  }
+      width: 90%;
+ }
   .login-inputs {
-    height: 35px;
-  }
+      height: 35px;
+ }
 }
-
 @media only screen and (max-width: 400px) {
   .format-input h1{
-    font-size: 40px;
-  }
-
+      font-size: 40px;
+ }
 }
-
-
-
 .productsContainer{
   display: flex;
   justify-content: space-evenly;
@@ -174,17 +141,15 @@ body,html{
   margin: 1rem;
   padding-bottom: 3%;
 }
-
 .productImg {
-  width: 100%; 
+  width: 100%;
 }
-
 .productImg:hover {
   opacity: 0.5;
 }
-
 .product{
-  /* border: 0.3rem double rgb(170, 168, 168); */
+ /* border: 0.3rem double rgb(170, 168, 168);
+  */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 15px;
   width: 250px;
@@ -193,28 +158,21 @@ body,html{
   margin-top: 1.5rem;
   padding: 1rem;
 }
-
 .productText{
   margin-top: 1rem;
 }
-
-
-/* Home Page Top Section*/ 
-
-
+/* Home Page Top Section*/
 .homeTopSection{
   background-color: rgb(251,247, 243);
   width: 100%;
   height: 75vh;
 }
-
 .homeCardContainer{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 3rem;
   margin-top: 2rem;
-
 }
 .homeCard{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -226,34 +184,27 @@ body,html{
   border-radius: 10px;
   padding: 20px;
   color:black;
-  
 }
-
 .Navigation{
   color:#ad9b6a;
 }
-
-
-
 .homeCard h4{
   color: #02012a;
   font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
 .homeCard p{
   text-align: center;
-    color: #8b8b93;
-    font-size: 12px;
-    padding: 0px 20px;
+  color: #8b8b93;
+  font-size: 12px;
+  padding: 0px 20px;
 }
-
 .homeIcon{
   font-size: 100px;
-  /* color: #ad9b6a; */
+ /* color: #ad9b6a;
+  */
   color:black;
 }
-
 .homeText{
   display: flex;
   flex-direction: column;
@@ -262,32 +213,28 @@ body,html{
   align-items: center;
   margin-top: 7rem;
   margin-bottom: 4rem;
-  border-top: 5px double rgb(39, 39, 42);;
+  border-top: 5px double rgb(39, 39, 42);
+ ;
   border-bottom: 5px double rgb(39, 39, 42);
   padding: 5%;
-
 }
-
 .homeText h6{
   color:gray;
   text-align: center;
- padding-left: 15px;
- padding-left: 15px;
+  padding-left: 15px;
+  padding-left: 15px;
 }
 @media only screen and (max-width: 380px) {
   .homeCard{
-    width: 250px;
-  }
+      width: 250px;
+ }
   .homeIcon{
-    font-size: 60px;
-  }
+      font-size: 60px;
+ }
 }
-
-
 #imgContainer{
   padding: 5%;
 }
-
 .bg {
   background-image: url('https://images.pexels.com/photos/1884581/pexels-photo-1884581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
   background-size: cover;
@@ -296,40 +243,33 @@ body,html{
   border: 0.5rem solid rgb(43, 28, 28);
   min-height: 80vh;
   margin-top: 3%;
-  
-} 
-
+}
 .footerContainer{
   background-color: rgb(36, 34, 34);
   width: 100%;
   padding: 2%;
   color: white;
-  text-align: center;  
+  text-align: center;
   margin-top: auto;
 }
-
 .addCart{
   background-color: rgb(231, 38, 38);
   color: white;
   border: none;
   padding: 0 1rem;
 }
-
 .addCart:hover{
   background-color: rgb(203, 17, 17);
 }
-
 .removeCart{
   background-color: rgb(38, 77, 231);
   color: white;
   border: none;
   padding: 0 1rem;
 }
-
 .removeCart:hover{
   background-color: rgb(12, 35, 163);
 }
-
 .productScreenContainer{
   margin-top: 8rem;
   margin-bottom: 4rem;
@@ -339,18 +279,15 @@ body,html{
   background-color: rgb(240, 240, 240);
 }
 .productScreenImg{
-  width: 500px; 
+  width: 500px;
 }
-
 .productScreenImg img{
   width: 100%;
 }
-
 .productScreenContent h5{
   text-align: left;
   padding: 0.3em;
 }
-
 .productScreenNotFound{
   background-color: rgb(225, 154, 154);
   border: 2px solid red;
@@ -362,239 +299,189 @@ body,html{
   margin-left: 3%;
   color: rgb(178, 57, 57);
 }
-
 .cartNumber{
   color:white;
   background-color: rgb(219, 12, 12);
   border-radius: 50%;
   padding: 0 7px;
 }
-
 .cartContainer{
   margin-top: 8rem;
 }
-
 .cartCol2{
   text-align: center;
   margin-bottom: 2em;
 }
-
 .cartScreenItem{
   padding: 2rem;
   background-color: rgb(242, 239, 239);
   margin-bottom: 1rem;
 }
-
 .cartScreenImg{
   width: 20%;
 }
-
 .cartScreenItemNum{
   font-size: 25px;
   float:right;
 }
-
 .cartContainer a{
   margin-left:0.5rem;
 }
-
 .cartScreenPrice{
   margin-left: 15%;
 }
-
 .cartScreenQuantity{
   margin-left: 15%;
 }
-
 .cartScreenRemove{
   margin-left: 15%;
 }
-
 .cartScreenSummaryInfo{
   text-align: left;
 }
-
 @media only screen and (max-width: 780px) {
-
- .cartScreenItem {
-    text-align: center
-  }
-
+  .cartScreenItem {
+      text-align: center 
+ }
   .cartContainer h1{
-    text-align: center;
-  }
-
-  .cartScreenImg{     
-    display: block;
-    width: 50%;
-    margin: auto;
-    margin-bottom: 1rem;
-  }
-
+      text-align: center;
+ }
+  .cartScreenImg{
+      display: block;
+      width: 50%;
+      margin: auto;
+      margin-bottom: 1rem;
+ }
   .cartScreenPrice{
-    display: block;
-    margin:0;
-    padding: 1rem;
-  }
-
+      display: block;
+      margin:0;
+      padding: 1rem;
+ }
   .cartScreenQuantity{
-    display: block;
-    margin:0;
-    padding: 1rem;
-  }
+      display: block;
+      margin:0;
+      padding: 1rem;
+ }
   .cartScreenRemove{
-    margin:0;
-  }
+      margin:0;
+ }
 }
-
 @media only screen and (max-width: 500px) {
-  .cartScreenImg{     
-    width:70%;
-  }
+  .cartScreenImg{
+      width:70%;
+ }
 }
-
 .dropDown{
   font-size: 5px;
 }
-
 .changePasswordContainer{
   text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
-  
   transform: translate(-50%, -80%);
 }
-
 .changePaswordInput{
   width: 25%;
   min-width: 275px;
   margin: 2%;
 }
-
 .searchContainer{
   margin-top: 5rem;
   text-align: center;
 }
-
 .searchColOne{
   padding: 2%;
 }
-
 .searchColTwo{
   padding: 2%;
 }
-
 .searchColTwo h4{
   text-align: left;
 }
-
 .shippingScreenContainer{
   margin-top: 5rem;
 }
-
 .shippingScreenContainer{
   text-align: center;
   width: 100%;
 }
-
 .shippingScreenContainer input{
   width: 30%;
 }
-
 .placeOrderScreenContainer{
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
-
 .placeOrderShipping{
   width: 100%;
   border: 2px solid rgb(195, 195, 195);
   padding: 30px;
   margin-bottom: 10px;
 }
-
-
 .placeOrderItems{
   width: 100%;
   border: 2px solid rgb(195, 195, 195);
   padding: 10px;
 }
-
 .placeOrderItem{
   padding: 20px;
   margin: 10px;
 }
-
 .placeOrderItem img{
   width: 75px;
   border: 1px solid rgb(192, 189, 189);
 }
-
 .placeOrderItem span{
   margin-left: 3%;
 }
-
 .placeOrderItem .placeOrderQuanPrice{
   margin-left: 30%;
 }
-
 .placeOrder{
   border: 1px solid rgb(192, 189, 189);
   padding: 18px;
 }
-
 .orderScreen{
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
-
 .OrderHistoryScreen{
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
-
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-
 }
-
 td, th {
   border: 5px solid black;
   text-align: left;
   padding: 10px;
 }
-
 .OrderHistoryTable{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 1%;
-
 }
-
 .successScreen{
   margin-top: 7rem;
   text-align: center;
 }
-
 .successSVG{
   height: 150px;
   margin-top:5%;
   margin-bottom: 3%;
 }
-
 .successScreen h1{
   color:rgb(64, 206, 64);
 }
-
 .successScreen h5{
   color:rgb(117, 111, 111);
 }
-
 .successScreen button{
   margin-top: 2%;
   width:200px;
@@ -604,32 +491,11 @@ td, th {
   color:white;
   height: 35px;
 }
-
 .successHome:hover{
   background: rgb(116, 180, 20);
-
 }
-
 @media only screen and (max-width: 380px) {
   .successSVG{
-    height: 100px;
-  }
+      height: 100px;
+ }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

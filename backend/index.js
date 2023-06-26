@@ -58,25 +58,40 @@ app.use("/api/slug", slugRouter);
 app.post('/register', async (req, res) => {
 
     const newPassword = await bcrypt.hash(req.body.password, 10);
-    
-    try{
-        const newUser = await User.create({name: req.body.name, email: req.body.email, password: newPassword})
-        res.json({status: "ok"});
-    }catch(err){
-        res.json({status: 'error', message: 'Duplicate email'})
-    }   
+    const existing = await User.findOne({email: req.body.email})
+
+    if(existing){
+        res.status(409).send("Email is already in use");
+    }else{
+
+        try{
+            const newUser = await User.create({name: req.body.name, email: req.body.email, password: newPassword})
+            res.status(200).send("New user created");
+        }catch(err){
+            res.status(404).send({message: "Error with registration", error: err})
+        }   
+
+    }
+
+
+
 })
 
 app.post('/login-user', async (req, res) => {
 
     const user = await User.findOne({email: req.body.email});
-    const passwordMatch = await bcrypt.compare(req.body.password, user.password);
-  
-    if(passwordMatch){
-        const token = jwt.sign({email: user.email}, process.env.SECRET);
-        res.json({auth: true, token: token, email: user.email, name:user.name, user_id: user._id});
+
+    if(!user){
+        res.status(404).send({auth: false, message: "Email or password incorrect"})
     }else{
-        res.json({auth: false, message: "No user exists"});
+        const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+    
+        if(passwordMatch){
+            const token = jwt.sign({email: user.email}, process.env.SECRET);
+            res.status(200).json({auth: true, token: token, email: user.email, name:user.name, user_id: user._id});
+        }else{
+            res.status(404).json({auth: false, message: "Email or password incorrect"});
+        }
     }
     
 });

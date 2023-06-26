@@ -23,7 +23,7 @@ export default function Navigation() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" >
           ShopNow
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

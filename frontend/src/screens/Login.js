@@ -64,25 +64,25 @@ export default function Login() {
   };
 
   return (
-    <div id="signin-container">
-      <div className="form-login">
+    <div className="screen-container">
+      <div className="form-screen">
         <div className="format-input">
           <h1>Welcome Back</h1>
-          <BsPersonCircle className="login-icon" />
-          <div className="login-input-container">
+          <BsPersonCircle className="icon" />
+          <div className="screen-input-container">
             <input
               type="text"
               placeholder="Email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="login-inputs"
+              className="screen-inputs"
             ></input>{" "}
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="login-inputs"
+              className="screen-inputs"
             ></input>
           </div>
 
@@ -95,7 +95,7 @@ export default function Login() {
               </Alert>
             </>
           )}
-          <div className="login-button">
+          <div className="screen-button">
             <button onClick={loginHandler} className="log-button">
               Submit
             </button>

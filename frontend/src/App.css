@@ -15,13 +15,13 @@ body,html{
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-.form-login{
+.form-screen{
   display:flex;
   justify-content: center;
   align-items: center;
   margin-top: 7rem;
 }
-.login-icon{
+.icon{
   font-size: 105px;
 }
 .format-input{
@@ -42,7 +42,7 @@ body,html{
 .format-input input{
   width:60%;
 }
-#signin-container{
+.screen-container{
   text-align:center;
   margin-bottom: 3rem;
 }
@@ -52,7 +52,7 @@ body,html{
   margin: auto;
   text-align: center;
 }
-.login-button{
+.screen-button{
   margin-top: 2rem;
  ;
 }
@@ -77,17 +77,24 @@ body,html{
   background-color: #666;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-.login-input-container{
+.screen-input-container{
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
+
+.center-change-inputs{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .register-now-prompt{
   margin-top: 2rem;
 }
-.login-inputs {
+.screen-inputs {
   display: block;
   width: 100%;
   padding: 12px;
@@ -99,17 +106,17 @@ body,html{
   transition: box-shadow 0.3s ease;
   height: 40px;
 }
-.login-inputs:focus {
+.screen-inputs:focus {
   outline: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 123, 255, 0.5);
 }
-.login-inputs::placeholder {
+.screen-inputs::placeholder {
   color: #aaa;
 }
-.login-inputs:-ms-input-placeholder {
+.screen-inputs:-ms-input-placeholder {
   color: #aaa;
 }
-.login-inputs::-ms-input-placeholder {
+.screen-inputs::-ms-input-placeholder {
   color: #aaa;
 }
 @media only screen and (max-width: 900px) {
@@ -125,7 +132,7 @@ body,html{
   .format-input input{
       width: 90%;
  }
-  .login-inputs {
+  .screen-inputs {
       height: 35px;
  }
 }
@@ -201,8 +208,6 @@ body,html{
 }
 .homeIcon{
   font-size: 100px;
- /* color: #ad9b6a;
-  */
   color:black;
 }
 .homeText{
@@ -374,18 +379,9 @@ body,html{
 .dropDown{
   font-size: 5px;
 }
-.changePasswordContainer{
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -80%);
-}
-.changePaswordInput{
-  width: 25%;
-  min-width: 275px;
-  margin: 2%;
-}
+
+
+
 .searchContainer{
   margin-top: 5rem;
   text-align: center;

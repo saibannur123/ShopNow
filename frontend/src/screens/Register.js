@@ -51,61 +51,56 @@ export default function Register() {
 
       if(err.response.status === 409){
         setInputErr(err.response.data)
-        setPassword("");
-        setConfirmPassword("");
-        setEmail("")
-        setName("")
-
       }else{
         console.log("Error registering", err)
         setInputErr("An unexpected error has occured");
-        setPassword("");
-        setConfirmPassword("");
-        setEmail("")
-        setName("")
       }
+      setPassword("");
+      setConfirmPassword("");
+      setEmail("")
+      setName("")
     }
 
   }
 
   return (
-    <div id="signin-container">
-    <div className="form-login">
+    <div className="screen-container">
+    <div className="form-screen">
       <div className="format-input">
         <h1>Register</h1>
-        <BsFillPersonPlusFill className="login-icon"/>
-        <div className="login-input-container">
+        <BsFillPersonPlusFill className="icon"/>
+        <div className="screen-input-container">
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-          className="login-inputs"></input>{" "}
+          className="screen-inputs"></input>{" "}
 
         <input
           type="text"
           value={email}
           placeholder="Email"
           onChange={(event) => setEmail(event.target.value)}
-          className="login-inputs"></input>{" "}
+          className="screen-inputs"></input>{" "}
 
         <input
           type="password"
           value={password}
           placeholder="Password"
           onChange={(event) => setPassword(event.target.value)}
-          className="login-inputs"></input>
+          className="screen-inputs"></input>
 
         <input
           type="password"
           value={confirmPassword}
           placeholder="Confirm Password"
           onChange={(event) => setConfirmPassword(event.target.value)}
-          className="login-inputs"></input>
+          className="screen-inputs"></input>
           </div>
  
         {inputErr !== "" && <><br></br><br></br><Alert className="alert" variant="danger">{inputErr}</Alert></>}
-        <div className="login-button">
+        <div className="screen-button">
         <button className="log-button" onClick={register}>
           Submit
         </button>

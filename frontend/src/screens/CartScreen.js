@@ -2,6 +2,9 @@ import React from "react";
 import { Store } from "../Context/storeContext";
 import { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus} from "react-icons/ai";
+import { BsTrashFill} from "react-icons/bs";
 
 export default function CartScreen() {
   const { state, dispatch } = useContext(Store);
@@ -39,78 +42,137 @@ export default function CartScreen() {
   }, [cartItems]);
 
   return (
-    <Container className="cartContainer">
-      <Row>
-        <Col lg={8}>
-          <h1>Your Shopping Cart</h1> <hr></hr>
-          {cartItems.map((item, index) => (
-            <div className="cartScreenItem" key={index}>
-              <span>
-                <img
-                  className="cartScreenImg"
-                  src={item.value.image}
-                  alt={item.value.name}
-                />
-                {/* TODO: Add href below */}
-                <a href="true" className="cartScreenName">
-                  {item.value.name}
-                </a>
-                <span className="cartScreenQuantity">
-                  {item.quantity === 1 ? (
-                    <button disabled>-</button>
-                  ) : (
-                    <button onClick={() => decQuantity(item)}>-</button>
-                  )}
-                  {item.quantity}
-                  {/* TODO: Change so it pulls  inStock from database so it is the latest */}
-                  {item.quantity === item.value.inStock ? (
-                    <button disabled>+</button>
-                  ) : (
-                    <button onClick={() => incQuantity(item)}>+</button>
-                  )}
-                </span>
-                <span className="cartScreenPrice">${item.value.price}</span>
-                <span>
-                  <button
-                    className="cartScreenRemove"
-                    onClick={() => removeItem(item)}
-                  >
-                    X
-                  </button>
-                </span>
-              </span>
-            </div>
-          ))}
-        </Col>
-        <Col className="cartCol2" lg={4}>
-          <h1>Order Summary</h1>
-          <hr></hr>
-          {/* <div className="cartScreenSummaryInfo">
-                        <h5>ITEMS: {cartItems.length}</h5>
-                        <h5>TOTAL COST: ${totalCost}</h5>
-                        <button>Checkout</button>
-                     </div> */}
+    // <Container className="cartContainer">
+    //   <Row>
+    //     <Col lg={8}>
+    //       <h1>Your Shopping Cart</h1> <hr></hr>
+    //       {cartItems.map((item, index) => (
+    //         <div className="cartScreenItem" key={index}>
+    //           <span>
+    //             <img
+    //               className="cartScreenImg"
+    //               src={item.value.image}
+    //               alt={item.value.name}
+    //             />
+    //             {/* TODO: Add href below */}
+    //             <a href="true" className="cartScreenName">
+    //               {item.value.name}
+    //             </a>
+    //             <span className="cartScreenQuantity">
+    //               {item.quantity === 1 ? (
+    //                 <button disabled>-</button>
+    //               ) : (
+    //                 <button onClick={() => decQuantity(item)}>-</button>
+    //               )}
+    //               {item.quantity}
+    //               {/* TODO: Change so it pulls  inStock from database so it is the latest */}
+    //               {item.quantity === item.value.inStock ? (
+    //                 <button disabled>+</button>
+    //               ) : (
+    //                 <button onClick={() => incQuantity(item)}>+</button>
+    //               )}
+    //             </span>
+    //             <span className="cartScreenPrice">${item.value.price}</span>
+    //             <span>
+    //               <button
+    //                 className="cartScreenRemove"
+    //                 onClick={() => removeItem(item)}
+    //               >
+    //                 X
+    //               </button>
+    //             </span>
+    //           </span>
+    //         </div>
+    //       ))}
+    //     </Col>
+    //     <Col className="cartCol2" lg={4}>
+    //       <h1>Order Summary</h1>
+    //       <hr></hr>
+    //       {/* <div className="cartScreenSummaryInfo">
+    //                     <h5>ITEMS: {cartItems.length}</h5>
+    //                     <h5>TOTAL COST: ${totalCost}</h5>
+    //                     <button>Checkout</button>
+    //                  </div> */}
 
-          <Card bg="warning">
-            <Card.Body>
-              {/* <Card.Title><h3>Order Summary</h3><hr></hr></Card.Title> */}
-              <Card.Text>
-                <strong>ITEMS:</strong> {cartItems.length}
-              </Card.Text>
-              <Card.Text>
-                <strong>SUBTOTAL COST:</strong> ${totalCost}
-              </Card.Text>
-              <Card.Text>
-                {state.cart.cartItems.length == 0 ? (
-                  <button disabled>Checkout</button>
-                ) : (
-                  <button onClick={() => redirectToShipping()}>Checkout</button>
-                )}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    //       <Card bg="warning">
+    //         <Card.Body>
+    //           {/* <Card.Title><h3>Order Summary</h3><hr></hr></Card.Title> */}
+    //           <Card.Text>
+    //             <strong>ITEMS:</strong> {cartItems.length}
+    //           </Card.Text>
+    //           <Card.Text>
+    //             <strong>SUBTOTAL COST:</strong> ${totalCost}
+    //           </Card.Text>
+    //           <Card.Text>
+    //             {state.cart.cartItems.length == 0 ? (
+    //               <button disabled>Checkout</button>
+    //             ) : (
+    //               <button onClick={() => redirectToShipping()}>Checkout</button>
+    //             )}
+    //           </Card.Text>
+    //         </Card.Body>
+    //       </Card>
+    //     </Col>
+    //   </Row>
+    // </Container>
+
+
+      <div className="cart-container">
+
+        <h1>Shopping Cart</h1>
+        
+        <div className="cart-items">
+          {cartItems.map((item, index) => (
+          
+          <div className="cart-item">
+
+          
+            <img className="cart-img" src={item.value.image} alt={item.value.name}/>
+
+
+            <div className="cart-content">
+          <span className="cart-name"> {item.value.name}</span>
+           
+          
+          
+        
+            <span className="cart-quantity">
+                   {item.quantity === 1 ? (
+                    <button className="cart-icon" disabled><AiOutlineMinus /></button>
+                  ) : (
+                    <button className="cart-icon" onClick={() => decQuantity(item)}><AiOutlineMinus /></button>
+                  )}
+                  &nbsp;&nbsp;&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;
+                  {/* TODO: Change so it pulls  inStock from database so it is the latest */}
+                   {item.quantity === item.value.inStock ? (
+                    <button disabled><AiOutlinePlus /></button>
+                  ) : (
+                    <button className="cart-icon" onClick={() => incQuantity(item) }><AiOutlinePlus /></button>
+                  )}
+            </span>
+          
+              <span className="cartScreenPrice cart-price">${(item.value.price).toFixed(2)}</span>
+
+                <button
+                className="cartScreenRemove cart-icon cart-trash"
+                onClick={() => removeItem(item)}
+              >
+                <BsTrashFill />
+              </button>
+    
+              </div>
+
+
+          </div> 
+          
+          
+          ))}
+
+    </div>
+
+
+
+      </div>
+    
   );
 }

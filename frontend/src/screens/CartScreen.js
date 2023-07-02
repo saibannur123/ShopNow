@@ -3,8 +3,9 @@ import { Store } from "../Context/storeContext";
 import { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
-import { AiOutlineMinus} from "react-icons/ai";
-import { BsTrashFill} from "react-icons/bs";
+import { AiOutlineMinus } from "react-icons/ai";
+import { BsTrashFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function CartScreen() {
   const { state, dispatch } = useContext(Store);
@@ -116,63 +117,81 @@ export default function CartScreen() {
     //   </Row>
     // </Container>
 
+    <div className="cart-container">
+      <h1>Shopping Cart</h1>
 
-      <div className="cart-container">
-
-        <h1>Shopping Cart</h1>
-        
-        <div className="cart-items">
-          {cartItems.map((item, index) => (
-          
-          <div className="cart-item">
-
-          
-            <img className="cart-img" src={item.value.image} alt={item.value.name}/>
-
+      <div className="cart-items">
+        {cartItems.map((item, index) => (
+          <div className="cart-item" key={index}>
+            <img
+              className="cart-img"
+              src={item.value.image}
+              alt={item.value.name}
+            />
 
             <div className="cart-content">
-          <span className="cart-name"> {item.value.name}</span>
-           
-          
-          
-        
-            <span className="cart-quantity">
-                   {item.quantity === 1 ? (
-                    <button className="cart-icon" disabled><AiOutlineMinus /></button>
-                  ) : (
-                    <button className="cart-icon" onClick={() => decQuantity(item)}><AiOutlineMinus /></button>
-                  )}
-                  &nbsp;&nbsp;&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;
-                  {/* TODO: Change so it pulls  inStock from database so it is the latest */}
-                   {item.quantity === item.value.inStock ? (
-                    <button disabled><AiOutlinePlus /></button>
-                  ) : (
-                    <button className="cart-icon" onClick={() => incQuantity(item) }><AiOutlinePlus /></button>
-                  )}
-            </span>
-          
-              <span className="cartScreenPrice cart-price">${(item.value.price).toFixed(2)}</span>
+              <span className="cart-name"><Link to={"/product/" + item.value.slug}>{item.value.name}</Link></span>
 
-                <button
-                className="cartScreenRemove cart-icon cart-trash"
+              <span className="cart-quantity">
+                {item.quantity === 1 ? (
+                  <button className="cart-icon-disabled" disabled>
+                    <AiOutlineMinus />
+                  </button>
+                ) : (
+                  <button
+                    className="cart-icon"
+                    onClick={() => decQuantity(item)}
+                  >
+                    <AiOutlineMinus />
+                  </button>
+                )}
+                &nbsp;&nbsp;&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;
+                {/* TODO: Change so it pulls  inStock from database so it is the latest */}
+                {item.quantity === item.value.inStock ? (
+                  <button className="cart-icon-disabled" disabled>
+                    <AiOutlinePlus />
+                  </button>
+                ) : (
+                  <button
+                    className="cart-icon"
+                    onClick={() => incQuantity(item)}
+                  >
+                    <AiOutlinePlus />
+                  </button>
+                )}
+              </span>
+
+              <span className="cartScreenPrice cart-price">
+                ${item.value.price.toFixed(2)}
+              </span>
+
+              <button
+                className="cart-icon cart-trash"
                 onClick={() => removeItem(item)}
               >
                 <BsTrashFill />
               </button>
-    
-              </div>
-
-
-          </div> 
-          
-          
-          ))}
-
-    </div>
-
-
-
+            </div>
+          </div>
+        ))}
       </div>
-    
+     
+      <div className="cart-calculation">
+        <div className="cart-calc-container">
+            <div className="cart-subtotal">
+              <span>Subtotal:</span>
+              <span className="cart-total"><strong>${totalCost ? (totalCost).toFixed(2) : totalCost}</strong></span>
+              <p> <span>Items:</span><span className="cart-total"><strong>{state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</strong></span></p>
+            </div>
+            <div>
+              {state.cart.cartItems.length == 0 ? (
+                  <button disabled>Checkout</button>
+                ) : (
+                  <button  className="cart-checkout" onClick={() => redirectToShipping()}>Checkout</button>
+                )}
+            </div>
+          </div>
+      </div>
+    </div>
   );
 }

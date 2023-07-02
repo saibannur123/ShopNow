@@ -408,17 +408,17 @@ body,html{
 
 } */
 
- .cart-icon{
+ .cart-icon, .cart-icon-disabled{
   all: unset;
   font-size: 20px;
  }
 
-/* .cart-icon:hover{
+.cart-icon:hover{
   background-color: #666;
   border-radius: 50%;
   background-color: lightgray;
-  padding: 2px;
-} */
+  padding: 4px 5px;
+}
 
 
 
@@ -436,7 +436,9 @@ body,html{
   width: 85%;
 }
 
-
+.cart-trash{
+  color:rgb(159, 6, 6);
+}
 .cart-items{
   display: flex;
   flex-direction: column;
@@ -450,10 +452,15 @@ width: 100%;
 align-items: baseline;
 }
 
+@media only screen and (min-width: 450px) {
+  .cart-name{
+    margin-left:10px;
+  }
+}
 
 @media only screen and (max-width: 850px) {
   .cart-item{
-    width: 100%;
+    width: 95%;
   }
 }
 
@@ -489,6 +496,56 @@ align-items: baseline;
 }
 
 
+
+.cart-calculation{
+  width:85%;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  justify-content: flex-end;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.cart-calc-container{
+  width: 350px;
+}
+
+.cart-subtotal{
+  margin-bottom: 20px;
+}
+
+.cart-total{
+  float: right;
+}
+
+.cart-checkout{
+  all: unset;
+  width:100%;
+  text-align: center;
+  border: 2px solid rgb(160, 154, 154);
+  border-radius: 25px;
+  padding: 5px;
+  color: rgb(131, 126, 126);
+}
+
+.cart-checkout:hover{
+  background-color: rgb(191, 185, 185);
+  color:white;
+}
+
+
+@media only screen and (max-width: 850px) {
+  .cart-calculation{
+    width:95%;
+  }
+  .cart-calc-container{
+    width:100%;
+  }
+}
+
+
+
 .dropDown{
   font-size: 5px;
 }
@@ -508,16 +565,40 @@ align-items: baseline;
 .searchColTwo h4{
   text-align: left;
 }
-.shippingScreenContainer{
-  margin-top: 5rem;
-}
+
 .shippingScreenContainer{
   text-align: center;
   width: 100%;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 1.5rem;
+}
+.shippingScreenContainer h1{
+  font-weight: 100;
+  font-size: 50px;
 }
 .shippingScreenContainer input{
-  width: 30%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 25px;
 }
+
+@media only screen and (max-width: 700px) {
+  .shippingScreenContainer input{
+      width: 90%;
+ }
+ .shippingScreenContainer h1{
+  font-weight: 100;
+  font-size: 40px;
+}
+}
+
 .placeOrderScreenContainer{
   margin-top: 7rem;
   margin-bottom: 2rem;

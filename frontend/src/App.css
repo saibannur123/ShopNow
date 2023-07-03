@@ -9,6 +9,19 @@ body,html{
   display: flex;
   flex-direction: column;
 }
+.float-right{
+  float:right;
+}
+.center{
+  text-align: center;
+}
+.underline{
+  text-decoration: underline;
+}
+.place-border{
+  border-bottom: 1px solid gray;
+  margin-bottom: 5px;
+}
 .loader{
   position: absolute;
   top: 50%;
@@ -589,6 +602,10 @@ align-items: baseline;
   margin-bottom: 25px;
 }
 
+#alert-container{
+  width: 98%;
+}
+
 @media only screen and (max-width: 700px) {
   .shippingScreenContainer input{
       width: 90%;
@@ -603,16 +620,81 @@ align-items: baseline;
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
+
+.payout-button{
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+.payout-button:hover {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.placeorder-items-container{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px;
+  margin-top: 1rem;
+}
+
+.placeorder-item{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 380px) {
+  .placeorder-items{
+    flex-direction: column;
+ }
+ .placeorder-item {
+  flex-direction: column;
+  text-align: center;
+}
+
+.placeOrderScreenContainer h1{
+  text-align: center;
+}
+}
+
+@media only screen and (max-width: 900px) {
+
+.placeOrderScreenContainer h1{
+  text-align: center;
+}
+}
+
+
+.placeOrderScreenContainer h1{
+  font-weight: 200;
+}
 .placeOrderShipping{
   width: 100%;
-  border: 2px solid rgb(195, 195, 195);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 30px;
+  padding-bottom: 38px;
   margin-bottom: 10px;
 }
 .placeOrderItems{
   width: 100%;
   border: 2px solid rgb(195, 195, 195);
   padding: 10px;
+}
+
+.placeorder-img{
+  width: 75px;
+  border: 1px solid rgb(192, 189, 189);
 }
 .placeOrderItem{
   padding: 20px;
@@ -622,14 +704,18 @@ align-items: baseline;
   width: 75px;
   border: 1px solid rgb(192, 189, 189);
 }
-.placeOrderItem span{
-  margin-left: 3%;
+.placeorder-items{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid hsla(0,0%,39%,.2);
+  padding: 15px;
 }
+
 .placeOrderItem .placeOrderQuanPrice{
   margin-left: 30%;
 }
 .placeOrder{
-  border: 1px solid rgb(192, 189, 189);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 18px;
 }
 .orderScreen{

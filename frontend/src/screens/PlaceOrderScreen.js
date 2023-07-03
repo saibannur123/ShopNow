@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { Store } from "../Context/storeContext";
 import axios from "axios";
+import Alert from 'react-bootstrap/Alert';
 
 const reducer = (state, action) => {
   switch (state.type) {
@@ -86,23 +87,24 @@ export default function PlaceOrderScreen() {
     <>
       <Container className="placeOrderScreenContainer">
         <Row>
-          <h1>Preview Order</h1>
+          <h1>Double check your order details</h1>
+          <Alert variant="warning" id="alert-container">Almost Done! Please click "Place Your Order" to finalize your order</Alert>
           <Col lg={8}>
             <div className="placeOrderShipping">
-              <h4>Shipping</h4>
+              <h3>Shipping Info</h3>
               <span>
-                <strong>Name:</strong> {shippingInfo.name}
+                <strong className="underline">Name</strong><br></br>{shippingInfo.name}
               </span>
               <br></br>
               <span>
-                <strong>Address:</strong> {shippingInfo.address},{" "}
+                <strong className="underline">Address:</strong><br></br>{shippingInfo.address},{" "}
                 {shippingInfo.city}, {shippingInfo.postalCode},{" "}
                 {shippingInfo.country}
               </span>
               <br></br>
-              <Link to="/shipping">Edit</Link>
+              <Link to="/shipping">Change</Link>
             </div>
-
+{/* 
             <div className="placeOrderItems">
               <h4>Items</h4>
               {stxte.cart.cartItems.map((item, index) => (
@@ -120,28 +122,60 @@ export default function PlaceOrderScreen() {
                   <hr></hr>
                 </div>
               ))}
-            </div>
+            </div> */}
           </Col>
 
           <Col lg={4}>
             <div className="placeOrder">
-              <h4>Order Summary</h4>
-              <span>Items: ${subTotal}</span>
-              <hr></hr>
-              <span>Shipping: $0.00</span>
-              <hr></hr>
-              <span>Tax: ${tax}</span> <hr></hr>
-              <span>
-                <strong>Total: ${total}</strong>
-              </span>
-              <hr></hr>
+              <h4 className="center">Order Summary</h4>
+              <div>Item(s): <span className="float-right">${subTotal}</span></div>
+              <div>Shipping: <span className="float-right">FREE</span></div>
+              <div className="place-border">Tax: <span className="float-right">${tax}</span></div>
+            
+              <div>
+                <strong>Total:<span className="float-right">${total?.toFixed(2)}</span></strong>
+              </div>
+              
               {stxte.cart.cartItems.length == 0 ? (
-                <button disabled>Payout</button>
+                <button disabled className="payout-button">Place Your Order</button>
               ) : (
-                <button onClick={createPayout}>Payout</button>
+                <button onClick={createPayout} className="payout-button">Place Your Order</button>
               )}
             </div>
           </Col>
+        </Row>
+        <Row>
+
+            <Col>
+                
+            <div className="placeorder-items-container">
+            <h3 className="center">Item(s) Overview</h3>
+              {stxte.cart.cartItems.map((item, index) => (
+                <div key={index} className="placeorder-items">
+                  <img className="placeorder-img" src={item.value.image} alt={item.value.name} />
+                <div className="placeorder-item">
+                    
+                  <span>
+                    <Link to={"/product/" + item.value.slug}>
+                      {item.value.name}
+                    </Link>
+                  </span>
+                  <span>{item.quantity}</span>
+                  <span >
+                    ${(item.value.price)?.toFixed(2)}
+                  </span>
+                  
+                  
+                  </div>
+                 
+                </div>
+                
+              ))}
+            </div>
+            
+            
+            </Col>
+
         </Row>
       </Container>
     </>

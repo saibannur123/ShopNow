@@ -6,11 +6,17 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
 import { BsTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
+import { HiShoppingBag } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function CartScreen() {
   const { state, dispatch } = useContext(Store);
   const cartItems = state.cart.cartItems;
   const [totalCost, setTotalCost] = useState();
+  const navigate = useNavigate();
 
   const removeItem = (item) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: item });
@@ -176,22 +182,33 @@ export default function CartScreen() {
         ))}
       </div>
      
-      <div className="cart-calculation">
+     {state.cart.cartItems.length !== 0 ? <div className="cart-calculation">
         <div className="cart-calc-container">
             <div className="cart-subtotal">
               <span>Subtotal:</span>
-              <span className="cart-total"><strong>${totalCost ? (totalCost).toFixed(2) : totalCost}</strong></span>
+              <span className="cart-total"><strong>${totalCost?.toFixed(2)}</strong></span>
               <p> <span>Items:</span><span className="cart-total"><strong>{state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</strong></span></p>
             </div>
             <div>
-              {state.cart.cartItems.length == 0 ? (
-                  <button disabled>Checkout</button>
-                ) : (
-                  <button  className="cart-checkout" onClick={() => redirectToShipping()}>Checkout</button>
-                )}
+               
+                
+                <button  className="cart-checkout" onClick={() => redirectToShipping()}>Checkout</button>
+                
             </div>
           </div>
       </div>
+      :
+        <div>
+         <Alert variant="info" className="cart-error">Looks like your cart is empty!</Alert>
+
+         <div className="cart-screen-empty">
+                  <HiShoppingBag className="cart-screen-icon"/>
+                  <h3>Click the button below to continue shopping at ShopNow</h3>
+                  <button onClick={() => navigate("/")} className="cart-shop">Continue Shopping</button>
+          </div>
+        </div>
+      
+      }
     </div>
   );
 }

@@ -129,7 +129,7 @@ export default function PlaceOrderScreen() {
             <div className="placeOrder">
               <h4 className="center">Order Summary</h4>
               <div>Item(s): <span className="float-right">${subTotal}</span></div>
-              <div>Shipping: <span className="float-right">FREE</span></div>
+              <div>Shipping: <span className="float-right text-success">FREE</span></div>
               <div className="place-border">Tax: <span className="float-right">${tax}</span></div>
             
               <div>

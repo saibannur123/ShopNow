@@ -395,9 +395,48 @@ body,html{
 
 }
 
+.cart-screen-icon{
+  font-size: 180px; 
+}
+
+.cart-screen-empty{
+  text-align: center;
+}
+.cart-screen-empty h3{
+  font-weight: 100;
+}
+
 .cart-container h1{
   text-align: center;
   font-family: 'Marcellus', serif;
+}
+
+.cart-shop{
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  width: 90%;
+  max-width: 400px;
+  margin-top: 10px;
+}
+
+.cart-shop:hover {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cart-error{
+  width: 90%;
+  display: flex;
+  justify-content: center;
 }
 
 

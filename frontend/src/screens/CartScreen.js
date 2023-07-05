@@ -203,7 +203,7 @@ export default function CartScreen() {
 
          <div className="cart-screen-empty">
                   <HiShoppingBag className="cart-screen-icon"/>
-                  <h3>Click the button below to continue shopping at ShopNow</h3>
+                  <h4>Click the button below to continue shopping at ShopNow</h4>
                   <button onClick={() => navigate("/")} className="cart-shop">Continue Shopping</button>
           </div>
         </div>

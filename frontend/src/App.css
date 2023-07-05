@@ -402,7 +402,7 @@ body,html{
 .cart-screen-empty{
   text-align: center;
 }
-.cart-screen-empty h3{
+.cart-screen-empty h4{
   font-weight: 100;
 }
 
@@ -679,6 +679,20 @@ align-items: baseline;
   color: #fff;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+.payout-button-done{
+  background-color: rgb(75, 181, 49);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
 
 .placeorder-items-container{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -725,6 +739,13 @@ align-items: baseline;
   padding-bottom: 38px;
   margin-bottom: 10px;
 }
+.order-screen-shipping{
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 33px;
+  padding-bottom: 61px;
+  margin-bottom: 10px;
+}
 .placeOrderItems{
   width: 100%;
   border: 2px solid rgb(195, 195, 195);
@@ -761,6 +782,22 @@ align-items: baseline;
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
+
+.order-screen-items{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px;
+  margin-top: 1rem;
+}
+
+.order-screen-alert{
+  width: 100%;
+}
+.order-screen-alert-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .OrderHistoryScreen{
   margin-top: 7rem;
   margin-bottom: 2rem;

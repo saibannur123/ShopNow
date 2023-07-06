@@ -5,8 +5,6 @@ import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import { PiUserSwitchDuotone } from "react-icons/pi";
 
-
-
 export default function ChangePassword() {
   const [currentPass, setCurrentPass] = useState("");
   const [newPass, setNewPass] = useState("");
@@ -17,18 +15,16 @@ export default function ChangePassword() {
   const email = state.userInfo.email;
 
   const analyzePassword = async () => {
-    if(currentPass === ""){
+    if (currentPass === "") {
       setInputErr("Please enter your existing password");
       return;
-    }
-    else if(newPass === ""){
+    } else if (newPass === "") {
       setInputErr("Please enter your new password");
       return;
-    }
-    else if(newPassConfirm === ""){
+    } else if (newPassConfirm === "") {
       setInputErr("Please confirm your new password");
       return;
-    }else if (newPass !== newPassConfirm) {
+    } else if (newPass !== newPassConfirm) {
       setInputErr("New Password does not match the new confirm password");
       setNewPass("");
       setNewPassConfirm("");
@@ -88,7 +84,8 @@ export default function ChangePassword() {
               <Alert className="alert" variant="danger">
                 {inputErr}
               </Alert>
-              <br></br><br></br>
+              <br></br>
+              <br></br>
             </>
           )}
           <br></br>

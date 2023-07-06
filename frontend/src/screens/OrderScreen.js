@@ -126,13 +126,21 @@ export default function OrderScreen() {
                   </span>
                 </div>
                 <div>
-                <strong>Total:<span className="float-right">${state.order[0].totalPrice?.toFixed(2)}</span></strong>
+                  <strong>
+                    Total:
+                    <span className="float-right">
+                      ${state.order[0].totalPrice?.toFixed(2)}
+                    </span>
+                  </strong>
                 </div>
                 {/* {stxte.cart.cartItems.length == 0 ? <button disabled>Payout</button> : <button onClick={createPayout}>Payout</button> }  */}
                 {state.order[0].isPaid ? (
-                   <button className="payout-button" onClick={() => navigate("/")} >
-                   Already Paid, Continue Shopping :)
-                 </button>
+                  <button
+                    className="payout-button"
+                    onClick={() => navigate("/")}
+                  >
+                    Already Paid, Continue Shopping :)
+                  </button>
                 ) : (
                   <button className="payout-button" onClick={payOrder}>
                     Pay with Stripe

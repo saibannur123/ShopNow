@@ -2,11 +2,9 @@ import React from "react";
 import Product from "../components/Product";
 import axios from "axios";
 import { useEffect, useReducer } from "react";
-import { FaTruck } from 'react-icons/fa';
-import { FaHandsHelping } from 'react-icons/fa';
-import { FaRegCreditCard } from 'react-icons/fa';
-
-
+import { FaTruck } from "react-icons/fa";
+import { FaHandsHelping } from "react-icons/fa";
+import { FaRegCreditCard } from "react-icons/fa";
 
 const productReducer = (state, action) => {
   switch (action.type) {
@@ -67,26 +65,28 @@ export default function Home() {
 
       <div className="homeCardContainer">
         <div className="homeCard">
-          <FaTruck className="homeIcon"/>
-            <h4>Free Shipping</h4>
-            <p>Free shipping on all online orders</p>
+          <FaTruck className="homeIcon" />
+          <h4>Free Shipping</h4>
+          <p>Free shipping on all online orders</p>
         </div>
         <div className="homeCard">
-          <FaHandsHelping className="homeIcon"/>
-            <h4>24/7 Support</h4>
-            <p>Contact us anything for you problem
-            </p>
+          <FaHandsHelping className="homeIcon" />
+          <h4>24/7 Support</h4>
+          <p>Contact us anything for you problem</p>
         </div>
         <div className="homeCard">
-            <FaRegCreditCard className="homeIcon"/>
-            <h4>Secure Payment</h4>
-            <p>Safe online payments through Stripe</p>
+          <FaRegCreditCard className="homeIcon" />
+          <h4>Secure Payment</h4>
+          <p>Safe online payments through Stripe</p>
         </div>
       </div>
 
       <div className="homeText">
         <h3>What We Offer</h3>
-        <h6>We provide all types of clothing and accessories with affordable pricing</h6>
+        <h6>
+          We provide all types of clothing and accessories with affordable
+          pricing
+        </h6>
       </div>
 
       <div className="productsContainer">

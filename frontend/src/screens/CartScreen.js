@@ -10,8 +10,6 @@ import Alert from "react-bootstrap/Alert";
 import { HiShoppingBag } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function CartScreen() {
   const { state, dispatch } = useContext(Store);
   const cartItems = state.cart.cartItems;
@@ -136,7 +134,11 @@ export default function CartScreen() {
             />
 
             <div className="cart-content">
-              <span className="cart-name"><Link to={"/product/" + item.value.slug}>{item.value.name}</Link></span>
+              <span className="cart-name">
+                <Link to={"/product/" + item.value.slug}>
+                  {item.value.name}
+                </Link>
+              </span>
 
               <span className="cart-quantity">
                 {item.quantity === 1 ? (
@@ -181,34 +183,50 @@ export default function CartScreen() {
           </div>
         ))}
       </div>
-     
-     {state.cart.cartItems.length !== 0 ? <div className="cart-calculation">
-        <div className="cart-calc-container">
+
+      {state.cart.cartItems.length !== 0 ? (
+        <div className="cart-calculation">
+          <div className="cart-calc-container">
             <div className="cart-subtotal">
               <span>Subtotal:</span>
-              <span className="cart-total"><strong>${totalCost?.toFixed(2)}</strong></span>
-              <p> <span>Items:</span><span className="cart-total"><strong>{state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</strong></span></p>
+              <span className="cart-total">
+                <strong>${totalCost?.toFixed(2)}</strong>
+              </span>
+              <p>
+                {" "}
+                <span>Items:</span>
+                <span className="cart-total">
+                  <strong>
+                    {state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                  </strong>
+                </span>
+              </p>
             </div>
             <div>
-               
-                
-                <button  className="cart-checkout" onClick={() => redirectToShipping()}>Checkout</button>
-                
+              <button
+                className="cart-checkout"
+                onClick={() => redirectToShipping()}
+              >
+                Checkout
+              </button>
             </div>
           </div>
-      </div>
-      :
+        </div>
+      ) : (
         <div>
-         <Alert variant="info" className="cart-error">Looks like your cart is empty!</Alert>
+          <Alert variant="info" className="cart-error">
+            Looks like your cart is empty!
+          </Alert>
 
-         <div className="cart-screen-empty">
-                  <HiShoppingBag className="cart-screen-icon"/>
-                  <h4>Click the button below to continue shopping at ShopNow</h4>
-                  <button onClick={() => navigate("/")} className="cart-shop">Continue Shopping</button>
+          <div className="cart-screen-empty">
+            <HiShoppingBag className="cart-screen-icon" />
+            <h4>Click the button below to continue shopping at ShopNow</h4>
+            <button onClick={() => navigate("/")} className="cart-shop">
+              Continue Shopping
+            </button>
           </div>
         </div>
-      
-      }
+      )}
     </div>
   );
 }

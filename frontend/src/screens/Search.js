@@ -39,7 +39,7 @@ export default function Search() {
     error: "",
   });
 
-  const [searchParams] = useSearchParams(); // deleted setSearchParams here? 
+  const [searchParams] = useSearchParams(); // deleted setSearchParams here?
   const [categoryList, setCategoryList] = useState([]);
   const navigate = useNavigate();
   const category = searchParams.get("category") || "all";
@@ -68,12 +68,10 @@ export default function Search() {
     const fetchCategory = async () => {
       const result = await axios.get(
         "http://localhost:3019/api/products/category"
-      )
+      );
       setCategoryList(result.data.data);
     };
     fetchCategory();
-
-    
   }, []);
 
   const getFilterURL = (filterType) => {
@@ -121,9 +119,7 @@ export default function Search() {
                   </Link>
                 </li>
                 <li>
-                  <Link to={getFilterURL({ price: "200" })}>
-                    $200+
-                  </Link>
+                  <Link to={getFilterURL({ price: "200" })}>$200+</Link>
                 </li>
               </div>
             </div>

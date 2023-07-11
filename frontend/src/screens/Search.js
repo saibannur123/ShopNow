@@ -4,6 +4,8 @@ import axios from "axios";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
+import ReactPaginate from 'react-paginate';
+
 
 const searchReducer = (state, action) => {
   switch (action.type) {
@@ -38,6 +40,7 @@ export default function Search() {
     productz: [],
     error: "",
   });
+  const totalItems = state.totalItems;
 
   const [searchParams] = useSearchParams(); // deleted setSearchParams here?
   const [categoryList, setCategoryList] = useState([]);
@@ -79,7 +82,12 @@ export default function Search() {
     const filterPrice = filterType.price || price;
     const filterRating = filterType.rating || rating;
     const filterOption = filterType.option || option;
-    return `/search?category=${filterCateg}&price=${filterPrice}&rating=${filterRating}&option=${filterOption}`;
+    const filterPage = filterType.page || page;
+    return `/search?category=${filterCateg}&price=${filterPrice}&rating=${filterRating}&option=${filterOption}&page=${filterPage}`;
+  };
+
+  const handlePageClick = (event) => {
+   navigate(getFilterURL({ page: event.selected + 1 }));
   };
 
   return (
@@ -180,7 +188,31 @@ export default function Search() {
                 ))
               )}
             </div>
+            
           </Col>
+          
+        </Row>
+
+        <Row>
+        <Col  lg={2}></Col>
+        <Col lg={10}>
+        <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        pageRangeDisplayed={4}
+        onPageChange={handlePageClick}
+        pageCount={Math.ceil(totalItems / 4)}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+        containerClassName="pagination"
+        pageLinkClassName="pagination-link"
+        previousClassName="pagination-previous"
+        nextClassName="pagination-next"
+        activeClassName="active"
+        disabledClassName="pagination-disabled"
+      />
+      </Col>
+
         </Row>
       </Container>
     </div>

@@ -96,75 +96,86 @@ export default function Search() {
         <Row>
           <Col className="searchColOne" lg={2}>
             <div className="searchCategory">
-              <h3>Category</h3>
-              <li>
+              <h5>Category</h5>
+              <li className={"all" === category ? "active-filter" : ""}>
                 <Link to={getFilterURL({ category: "all" })}>All</Link>
               </li>
               {categoryList.map((item, index) => (
-                <li key={index}>
+                <li key={index} className={item === category ? "active-filter" : ""}>
                   <Link to={getFilterURL({ category: item })}>{item}</Link>
                 </li>
               ))}
             </div>
             <br></br>
             <div className="searchPrice">
-              <h3>Price</h3>
+            <hr class="my-line"></hr>
+
+              <h5>Price</h5>
               <div>
-                <li>
+                <li className={'all' === price ? "active-filter" : ""}>
                   <Link to={getFilterURL({ price: "all" })}>Any</Link>
                 </li>
-                <li>
+                <li className={'1-50' === price ? "active-filter" : ""}>
                   <Link to={getFilterURL({ price: "1-50" })}>$1 to $50</Link>
                 </li>
-                <li>
+                <li className={'51-100' === price ? "active-filter" : ""}>
                   <Link to={getFilterURL({ price: "51-100" })}>
                     $51 to $100
                   </Link>
                 </li>
-                <li>
+                <li className={'101-200' === price ? "active-filter" : ""}>
                   <Link to={getFilterURL({ price: "101-200" })}>
                     $101 to $200
                   </Link>
                 </li>
-                <li>
+                <li className={'200' === price ? "active-filter" : ""}>
                   <Link to={getFilterURL({ price: "200" })}>$200+</Link>
                 </li>
               </div>
             </div>
             <br></br>
             <div className="searchRating">
-              <h3>Rating</h3>
+            <hr class="my-line"></hr>
+
+              <h5>Rating</h5>
               <div>
-                <li>
+                <li className={'4' === rating ? "active-filter" : ""}>
                   <Link to={getFilterURL({ rating: "4" })}>
                     4 stars and above
                   </Link>
                 </li>
-                <li>
+                <li className={'3' === rating ? "active-filter" : ""}>
                   <Link to={getFilterURL({ rating: "3" })}>
                     3 stars and above
                   </Link>
                 </li>
-                <li>
+                <li className={'2' === rating ? "active-filter" : ""}>
                   <Link to={getFilterURL({ rating: "2" })}>
                     2 stars and above
                   </Link>
                 </li>
-                <li>
+                <li className={'1' === rating ? "active-filter" : ""}>
                   <Link to={getFilterURL({ rating: "1" })}>
                     1 stars and above
                   </Link>
                 </li>
-                <li>
+                <li className={'0' === rating ? "active-filter" : ""}>
                   <Link to={getFilterURL({ rating: "0" })}>
                     0 stars and above
                   </Link>
                 </li>
               </div>
+              <hr ></hr>
+
             </div>
-            <br></br>
-            <div className="searchOption">
-              <div>
+          
+
+          </Col>
+          <Col className="searchColTwo" lg={10}>
+            <div className="search-log">
+
+            {state.totalItems == 0 ? <h4>No Results</h4> : <h4>{state?.totalItems} Results</h4>}
+
                 <select
                   onChange={(e) => {
                     navigate(getFilterURL({ option: e.target.value }));
@@ -174,11 +185,9 @@ export default function Search() {
                   <option value="increase">Low to High Price</option>
                   <option value="decrease">High to Low Price</option>
                 </select>
-              </div>
+
             </div>
-          </Col>
-          <Col className="searchColTwo" lg={10}>
-            {state.loader ? "" : <h4>{state.totalItems} Results</h4>}
+            
             <div className="productsContainer">
               {state.loader ? (
                 <div>Loading...</div>
@@ -198,11 +207,11 @@ export default function Search() {
         <Col lg={10}>
         <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        nextLabel=">"
         pageRangeDisplayed={4}
         onPageChange={handlePageClick}
         pageCount={Math.ceil(totalItems / 4)}
-        previousLabel="< previous"
+        previousLabel="<"
         renderOnZeroPageCount={null}
         containerClassName="pagination"
         pageLinkClassName="pagination-link"

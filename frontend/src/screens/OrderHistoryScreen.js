@@ -62,32 +62,31 @@ export default function OrderHistoryScreen() {
           <h1>Order History</h1>
 
           <div className="OrderHistoryTable">
-            <table>
-              <tbody>
-                <tr>
-                  <th>ID</th>
-                  <th>DATE</th>
-                  <th>TOTAL</th>
-                  <th>PAID</th>
-                  <th>DELIVERED</th>
-                  <th>ACTIONS</th>
-                </tr>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>DATE</th>
+        <th>TOTAL</th>
+        <th>ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {state.orders.map((item) => (
+        <tr key={item._id}>
+          <td>{item._id}</td>
+          <td>{item.createdAt.substring(0, 10)}</td>
+          <td>${item.totalPrice}</td>
+          <td>
+            <Link className={item.isPaid ? item.isDelivered ? 'btn btn-success' : 'btn btn-info' : 'btn btn-danger'} to={`/order/${item._id}`}>{item.isPaid ? item.isDelivered ? "None" : "View" : "Pay"}</Link>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-                {state.orders.map((item, key) => (
-                  <tr key={key}>
-                    <td>{item._id}</td>
-                    <td>{item.createdAt.substring(0, 10)}</td>
-                    <td>${item.totalPrice}</td>
-                    <td>{item.isPaid ? "Yes" : "No"}</td>
-                    <td>{item.isDelivered ? "Yes" : "No"}</td>
-                    <td>
-                      <Link to={`/order/${item._id}`}>ACTION</Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+
         </div>
       )}
     </>

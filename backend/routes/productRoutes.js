@@ -49,8 +49,6 @@ productRouter.get("/category", async (req, res) => {
     }
 })
 
-
-
 productRouter.get("/search", async (req, res) => {
     const { category, query, price, rating, option, page} = req.query;
     const pageC = page ? page : 1;
@@ -62,18 +60,24 @@ productRouter.get("/search", async (req, res) => {
         andArray.category = category;
     }
 
-    // TODO: Website can break if user changes the URL, so its -50, or 50-, or something that doesnt follow this syntax: #-# or #
-    if(price && price !== 'all' && price.includes('-')){
-        andArray.price = {$gte : Number(price.split('-')[0]), $lte : Number(price.split('-')[1])}
-    }else if(price && price !== 'all' && !price.includes('-')){
-        andArray.price = {$gte : Number(price)}
-    }
+    if (price && price !== 'all') {
+        if (!isNaN(price)) {
+          // Case 1: Single value (positive number)
+          andArray.price = { $gte: Number(price) };
+        } else if (price.includes('-')) {
+          // Case 2: Price range (e.g., 10-55)
+          const [minPrice, maxPrice] = price.split('-').map(Number);
+          if (!isNaN(minPrice) && !isNaN(maxPrice)) {
+            andArray.price = { $gte: minPrice, $lte: maxPrice };
+          }
+        }
+      }
 
     if(query && query  !== 'all'){
-        andArray.name = query; //  double check this?
+        andArray.name = query; 
     }
 
-    if(rating && rating != 0 && rating !== 'all'){
+    if(rating && rating != 0 && rating !== 'all' && !isNaN(rating)){
         andArray.rating = {$gt: Number(rating)}; 
     }
 

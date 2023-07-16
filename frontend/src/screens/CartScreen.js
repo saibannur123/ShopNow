@@ -2,7 +2,6 @@
 import React from "react";
 import { Store } from "../Context/storeContext";
 import { useContext, useEffect, useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
 import { BsTrashFill } from "react-icons/bs";

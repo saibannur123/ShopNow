@@ -174,7 +174,7 @@ export default function Search() {
           <Col className="searchColTwo" lg={10}>
             <div className="search-log">
 
-            {state.totalItems == 0 ? <h4>No Results</h4> : <h4>{state?.totalItems} Results</h4>}
+            {state.totalItems === 0 ? <h4>No Results</h4> : <h4>{state?.totalItems} Results</h4>}
 
                 <select
                   onChange={(e) => {

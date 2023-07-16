@@ -39,5 +39,4 @@ userRouter.post("/change-password", async (req, res) => {
     }
 });
 
-// Export the userRouter module to be used in other parts of the application
 module.exports = userRouter;

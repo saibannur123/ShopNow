@@ -13,9 +13,6 @@ slugRouter.get("/:id", async (req, res) => {
         }else{
             res.status(404).json({ status: 'Error', message: "Product not found" });
         }
-        
-    
-
 });
 
 module.exports = slugRouter;

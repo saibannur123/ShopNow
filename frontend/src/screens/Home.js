@@ -57,12 +57,10 @@ export default function Home() {
 
   return (
     <div>
-      {/* Background image container */}
       <div id="imgContainer">
         <div className="bg"></div>
       </div>
 
-      {/* Information cards */}
       <div className="homeCardContainer">
         <div className="homeCard">
           <FaTruck className="homeIcon" />
@@ -81,7 +79,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Text section */}
       <div className="homeText">
         <h3>What We Offer</h3>
         <h6>
@@ -89,7 +86,6 @@ export default function Home() {
         </h6>
       </div>
 
-      {/* Display products */}
       <div className="productsContainer">
         {state.loader ? (
           <div className="load-container">

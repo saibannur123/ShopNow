@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 export default function PlaceOrderScreen() {
   const navigate = useNavigate();
   const { state: stxte, dispatch: dxpatch } = useContext(Store);
-  const [state, dispatch] = useReducer(reducer, { loader: false });
+  const [, dispatch] = useReducer(reducer, { loader: false });
   const shippingInfo = stxte.cart.shippingInfo;
   const [subTotal, setSubTotal] = useState(0);
   const [tax, setTax] = useState(0);
@@ -150,7 +150,7 @@ export default function PlaceOrderScreen() {
                 </strong>
               </div>
 
-              {stxte.cart.cartItems.length == 0 ? (
+              {stxte.cart.cartItems.length === 0 ? (
                 <button disabled className="payout-button">
                   Place Your Order
                 </button>

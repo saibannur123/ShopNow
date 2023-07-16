@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 
 export default function OrderHistoryScreen() {
   // Extracting state and dispatch from the global store using Context API
-  const { state: stxte, dispatch: dxspatch } = useContext(Store);
+  const { state: stxte } = useContext(Store);
   // Setting up a local reducer to manage component state
   const [state, dispatch] = useReducer(reducer, {
     loader: true,
@@ -65,7 +65,7 @@ export default function OrderHistoryScreen() {
 
     // Calling the fetchOrders function to initiate the order fetching process
     fetchOrders();
-  }, []);
+  }, [stxte.userInfo.token, stxte.userInfo.user_id]);
 
   return (
     <>

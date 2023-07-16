@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useReducer } from "react";
+import React, { useEffect, useContext, useReducer } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
@@ -25,8 +25,7 @@ const reducer = (state, action) => {
 
 export default function OrderScreen() {
   const orderId = useParams().order;
-  const { state: stxte, dispatch: dxspatch } = useContext(Store);
-  const [orderInfo, setOrderInfo] = useState("");
+  const { state: stxte } = useContext(Store);
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, {
     loader: true,
@@ -85,7 +84,7 @@ export default function OrderScreen() {
         visible={true}
         />
         </div>
-      ) : state.error != "" ? <Error value={state.error} /> : (
+      ) : state.error !== "" ? <Error value={state.error} /> : (
         <Container className="orderScreen">
           <Row>
             <h1>Order {state.order[0]._id}</h1>

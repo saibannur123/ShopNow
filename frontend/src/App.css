@@ -852,3 +852,12 @@ td, th {
   font-size:100px;
   margin-bottom: 20px;
 }
+
+.load-container{
+  width: 100%;
+  text-align: center;
+}
+
+.margin-top{
+  margin-top: 10rem;
+}

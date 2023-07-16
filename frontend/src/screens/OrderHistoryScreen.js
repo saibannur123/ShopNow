@@ -7,6 +7,7 @@ import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import { BsCart4} from "react-icons/bs";
 import Error from "../components/Error";
+import { RotatingLines } from 'react-loader-spinner'
 
 // Reducer function to handle state changes for fetching orders
 const reducer = (state, action) => {
@@ -68,11 +69,19 @@ export default function OrderHistoryScreen() {
 
   return (
     <>
-      {state.loader ? ( // Display loading message while orders are being fetched
-        <h1>LOADING</h1>
-      ) : state.error !== "" ? ( // Display an error component if an error occurred during fetching
+      {state.loader ? ( 
+        <div className="load-container margin-top">
+        <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="36"
+        visible={true}
+        />
+        </div>
+      ) : state.error !== "" ? ( 
         <Error value={state.error} />
-      ) : state.orders.length !== 0 ? ( // If orders exist, display the order history table
+      ) : state.orders.length !== 0 ? ( 
         <div className="OrderHistoryScreen">
           <h1>Order History</h1>
 

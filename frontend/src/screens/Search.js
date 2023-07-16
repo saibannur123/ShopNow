@@ -5,7 +5,7 @@ import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import ReactPaginate from 'react-paginate';
-
+import { RotatingLines } from 'react-loader-spinner'
 
 const searchReducer = (state, action) => {
   switch (action.type) {
@@ -190,7 +190,15 @@ export default function Search() {
             
             <div className="productsContainer">
               {state.loader ? (
-                <div>Loading...</div>
+                <div className="load-container margin-top">
+                <RotatingLines
+                strokeColor="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="36"
+                visible={true}
+                />
+                </div>
               ) : (
                 state.productz.map((data, index) => (
                   <Product value={data} key={index} />

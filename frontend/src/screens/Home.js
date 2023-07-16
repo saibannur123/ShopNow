@@ -6,6 +6,7 @@ import { FaTruck } from "react-icons/fa";
 import { FaHandsHelping } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa";
 import Error from "../components/Error";
+import { RotatingLines } from 'react-loader-spinner'
 
 // Reducer function to manage the state for fetching products
 const productReducer = (state, action) => {
@@ -91,7 +92,15 @@ export default function Home() {
       {/* Display products */}
       <div className="productsContainer">
         {state.loader ? (
-          <h4>Loading...</h4> 
+          <div className="load-container">
+          <RotatingLines
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="36"
+          visible={true}
+        />
+        </div>
         ) : state.error !== "" ? <Error value={state.error}/> : (
           state.productz.map((data, index) => (
             <Product value={data} key={index} />

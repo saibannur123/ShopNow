@@ -140,7 +140,7 @@ export default function PlaceOrderScreen() {
                 Shipping: <span className="float-right text-success">FREE</span>
               </div>
               <div className="place-border">
-                Tax: <span className="float-right">${tax}</span>
+                Tax: <span className="float-right">${tax?.toFixed(2)}</span>
               </div>
 
               <div>

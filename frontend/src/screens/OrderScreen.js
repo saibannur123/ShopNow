@@ -6,6 +6,7 @@ import { Store } from "../Context/storeContext";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import Error from "../components/Error";
+import { RotatingLines } from 'react-loader-spinner'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -75,7 +76,15 @@ export default function OrderScreen() {
   return (
     <>
       {state.loader ? (
-        <div>Loading</div>
+        <div className="load-container margin-top">
+        <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="36"
+        visible={true}
+        />
+        </div>
       ) : state.error != "" ? <Error value={state.error} /> : (
         <Container className="orderScreen">
           <Row>

@@ -4,6 +4,7 @@ import { useEffect, useReducer, useContext } from "react";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import { Store } from "../Context/storeContext";
+import { RotatingLines } from 'react-loader-spinner'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -99,7 +100,15 @@ export default function ProductScreen() {
   return (
     <div className="productScreen">
       {state.loader ? (
-        <div className="loader">Loading...</div>
+        <div className="load-container margin-top">
+        <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="36"
+        visible={true}
+        />
+        </div>
       ) : state.error !== "" ? (
         <div className="productScreenNotFound">
           <h3>Product not found</h3>

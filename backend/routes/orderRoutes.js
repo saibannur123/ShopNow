@@ -152,27 +152,36 @@ orderRouter.post("/stripe-webhook", bodyParser.raw({
 
 
 orderRouter.get("/:id", verifyJWT, async (req, res) => {
+    try {
+        const userID = req.id;
+        const orderId = req.params.id;
 
+        const result = await Order.find({ _id: orderId });
+        if (!result) {
+            return res.status(404).send({
+                message: "Order not found",
+            });
+        }
 
-    const result = await Order.find({
-        _id: req.params.id
-    })
+        if(result[0].user != userID){
+            return res.status(403).send({
+                message: "Forbidden Action. You may not access this order",
+            });
+        }
 
-    if (result) {
         res.status(200).send({
             message: "Found order",
             order: result
-        })
-    } else {
-        res.status(400).send({
-            message: "Error finding the object",
-            error: "Error finding the order info"
-        })
+        });
+
+    } catch (error) {
+        console.error("Error while fetching order:", error);
+        res.status(500).send({
+            message: "Internal server error",
+            error: "Error finding the order"
+        });
     }
-
-})
-
-
+});
 
 
 module.exports = orderRouter;

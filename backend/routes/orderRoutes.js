@@ -165,7 +165,7 @@ orderRouter.get("/:id", verifyJWT, async (req, res) => {
 
         if(result[0].user != userID){
             return res.status(403).send({
-                message: "Forbidden Action. You may not access this order",
+                message: "Access to this resource on the server is denied!",
             });
         }
 

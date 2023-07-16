@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { Store } from "../Context/storeContext";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
+import Error from "../components/Error";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -83,7 +84,7 @@ export default function OrderScreen() {
     <>
       {state.loader ? (
         <div>Loading</div>
-      ) : state.error != "" ? <div>state.error</div> : (
+      ) : state.error != "" ? <Error value={state.error} /> : (
         <Container className="orderScreen">
           <Row>
             <h1>Order {state.order[0]._id}</h1>

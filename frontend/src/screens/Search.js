@@ -108,7 +108,7 @@ export default function Search() {
             </div>
             <br></br>
             <div className="searchPrice">
-            <hr class="my-line"></hr>
+            <hr className="my-line"></hr>
 
               <h5>Price</h5>
               <div>
@@ -135,7 +135,7 @@ export default function Search() {
             </div>
             <br></br>
             <div className="searchRating">
-            <hr class="my-line"></hr>
+            <hr className="my-line"></hr>
 
               <h5>Rating</h5>
               <div>

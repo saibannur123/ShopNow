@@ -978,3 +978,58 @@ td, th {
 .OrderHistoryTable td {
   border-bottom: 1px solid #ddd;
 }
+
+.error-container {
+  background-color: #ffebee; /* Red error background color */
+  border: 1px solid #f44336; /* Red error border color */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  padding:25px;
+}
+
+@media (max-width: 700px) {
+  .error-container {
+    width: 100%;
+  }
+}
+
+.error-heading {
+  font-weight: bold;
+  color: #f44336; /* Red error text color */
+}
+
+.status-code{
+  font-size: 110px;
+}
+@media (max-width: 400px) {
+  .status-code{
+    font-size: 50px;
+  }
+}
+
+.status-text {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.error-message {
+  color: #f44336; /* Red error text color */
+}
+
+.error-outer{
+  width: 100%;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.error-icon{
+  font-size:100px;
+  margin-bottom: 20px;
+}

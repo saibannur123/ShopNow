@@ -38,13 +38,15 @@ export default function OrderScreen() {
       try {
         const result = await axios.get(
           `http://localhost:3019/api/orders/${orderId}`,
-          { headers: { authorization: `Bearer ${stxte.userInfo.token}` } }
+          { 
+            headers: { authorization: `Bearer ${stxte.userInfo.token}` }, 
+          },
+          
         );
         console.log("Result", result.data.order);
         dispatch({ type: "ORDER_SUCCESS", payload: result.data.order });
       } catch (err) {
         dispatch({ type: "ORDER_ERROR", payload: err });
-        alert("Error fetch order");
       }
     };
     fetchOrder();
@@ -81,7 +83,7 @@ export default function OrderScreen() {
     <>
       {state.loader ? (
         <div>Loading</div>
-      ) : (
+      ) : state.error != "" ? <div>state.error</div> : (
         <Container className="orderScreen">
           <Row>
             <h1>Order {state.order[0]._id}</h1>

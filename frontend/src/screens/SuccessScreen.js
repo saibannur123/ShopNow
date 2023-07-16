@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 export default function SuccessScreen() {
   const navigate = useNavigate();
 
+  // Use useEffect to redirect back to the home page after a timeout
   useEffect(() => {
     const redirectTimeout = setTimeout(() => {
       navigate("/");
-    }, 10000); // 10 seconds in milliseconds
+    }, 10000);
 
-    return () => clearTimeout(redirectTimeout); // Cleanup the timeout when the component unmounts
+    // Clean up the timeout to avoid memory leaks
+    return () => clearTimeout(redirectTimeout);
   }, [navigate]);
 
   return (

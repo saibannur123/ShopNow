@@ -10,23 +10,29 @@ const axios = require("axios")
 const bodyParser = require('body-parser');
 
 
+// Route handler for the endpoint "/history" to retrieve order history
 orderRouter.get("/history", verifyJWT, async (req, res) => {
-
-    const result = await Order.find({
-        user: req.query.user
-    })
-    if (result) {
-        res.status(200).json({
-            message: "All orders found",
-            orders: result
-        })
-    } else {
-        res.status(400).json({
-            message: "Orders were not found"
-        })
+    try {
+      // Attempt to find orders related to the user specified in the query parameter
+      const result = await Order.find({
+        user: req.query.user,
+      });
+  
+      // If orders are found, respond with 200 status and the orders in JSON format
+      res.status(200).json({
+        message: "All orders found",
+        orders: result,
+      });
+    } catch (err) {
+      // If an error occurs during the database query, respond with 500 status and an error message
+      res.status(500).send({
+        message: "Internal server error",
+        error: "Error finding the order history",
+      });
     }
-})
-
+  });
+  
+  
 orderRouter.post("/", verifyJWT, async (req, res) => {
     let orderItem = req.body.orderItems.map((x) => ({
         ...x.value

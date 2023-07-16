@@ -63,15 +63,7 @@ export default function OrderScreen() {
       );
 
       if (result.status === 200) {
-        //  const updatePaid = await axios.post(`http://localhost:3019/api/orders/${orderId}/paid`, {url: result.data.url}, { headers: {authorization: `Bearer ${stxte.userInfo.token}`}})
-        // if(updatePaid.status === 200){
-        // console.log("success", result)
         window.location.href = result.data.url;
-        // }else{
-        //     console.log("Faield to update", updatePaid.data.error);
-        //     window.location.href = result.data.url;
-        // }
-        // console.log("RESL", result);
       } else {
         console.log("Fail", result);
       }
@@ -104,8 +96,6 @@ export default function OrderScreen() {
                   {state.order[0].shippingInfo.country}
                 </span>
                 <br></br>
-                {/* <span><strong>Delivered:</strong> {state.order[0].isDelivered ? <span>True</span> : <span>False</span>}</span> <br></br>
-                    <span><strong>Paid:</strong> {state.order[0].isPaid ? <span>True</span> : <span>False</span>}</span> */}
               </div>
             </Col>
 
@@ -136,7 +126,6 @@ export default function OrderScreen() {
                     </span>
                   </strong>
                 </div>
-                {/* {stxte.cart.cartItems.length == 0 ? <button disabled>Payout</button> : <button onClick={createPayout}>Payout</button> }  */}
                 {state.order[0].isPaid ? (
                   <button
                     className="payout-button"

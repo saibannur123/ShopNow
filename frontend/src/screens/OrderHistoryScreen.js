@@ -1,3 +1,4 @@
+// Importing necessary libraries and components
 import React, { useEffect, useContext, useReducer } from "react";
 import axios from "axios";
 import { Store } from "../Context/storeContext";
@@ -5,7 +6,9 @@ import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import { BsCart4} from "react-icons/bs";
+import Error from "../components/Error";
 
+// Reducer function to handle state changes for fetching orders
 const reducer = (state, action) => {
   switch (action.type) {
     case "ORDERS_REQUEST":
@@ -20,20 +23,25 @@ const reducer = (state, action) => {
 };
 
 export default function OrderHistoryScreen() {
+  // Extracting state and dispatch from the global store using Context API
   const { state: stxte, dispatch: dxspatch } = useContext(Store);
+  // Setting up a local reducer to manage component state
   const [state, dispatch] = useReducer(reducer, {
     loader: true,
     orders: {},
     error: "",
   });
+  // Getting the navigation function to move to different routes
   const navigate = useNavigate();
 
-
+  // Fetching user order history on component mount
   useEffect(() => {
     const fetchOrders = async () => {
+      // Dispatching action to indicate order fetching is in progress
       dispatch({ type: "ORDERS_REQUEST" });
 
       try {
+        // Sending a request to the server to fetch the order history for the current user
         const response = await axios.get(
           "http://localhost:3019/api/orders/history",
           {
@@ -46,21 +54,25 @@ export default function OrderHistoryScreen() {
           }
         );
 
+        // Dispatching action to indicate successful retrieval of orders
         dispatch({ type: "ORDERS_SUCCESS", payload: response.data.orders });
       } catch (err) {
+        // Dispatching action to indicate an error occurred while fetching orders
         dispatch({ type: "ORDERS_ERROR", payload: err });
-        alert("Error fetch order");
       }
     };
 
+    // Calling the fetchOrders function to initiate the order fetching process
     fetchOrders();
   }, []);
 
   return (
     <>
-      {state.loader ? (
+      {state.loader ? ( // Display loading message while orders are being fetched
         <h1>LOADING</h1>
-      ) : state.orders.length !== 0 ? (
+      ) : state.error !== "" ? ( // Display an error component if an error occurred during fetching
+        <Error value={state.error} />
+      ) : state.orders.length !== 0 ? ( // If orders exist, display the order history table
         <div className="OrderHistoryScreen">
           <h1>Order History</h1>
 
@@ -75,6 +87,7 @@ export default function OrderHistoryScreen() {
                 </tr>
               </thead>
               <tbody>
+                {/* Mapping over orders and displaying each order in a row */}
                 {state.orders.map((item) => (
                   <tr key={item._id}>
                     <td>{item._id}</td>
@@ -82,6 +95,7 @@ export default function OrderHistoryScreen() {
                     <td>${item.totalPrice}</td>
                     <td>
                       <Link
+                        // Setting the link style based on the order status
                         className={
                           item.isPaid
                             ? item.isDelivered
@@ -91,6 +105,7 @@ export default function OrderHistoryScreen() {
                         }
                         to={`/order/${item._id}`}
                       >
+                        {/* Displaying appropriate action text based on the order status */}
                         {item.isPaid
                           ? item.isDelivered
                             ? "None"
@@ -104,23 +119,24 @@ export default function OrderHistoryScreen() {
             </table>
           </div>
         </div>
-      ) : 
-      
-      <div className="OrderHistoryScreen">
-            <h1>Order History</h1>
+      ) : (
+        // If no orders exist, display a message with a cart icon and a "Continue Shopping" button
+        <div className="OrderHistoryScreen">
+          <h1>Order History</h1>
 
-      <Alert variant="info" className="cart-error">
-        No Purchase History
-      </Alert>
+          <Alert variant="info" className="cart-error">
+            No Order History
+          </Alert>
 
-      <div className="cart-screen-empty">
-      <BsCart4 className="order-history-icon" />
-        <h4>Check back once you have created your first order!</h4>
-        <button onClick={() => navigate("/")} className="cart-shop">
-          Continue Shopping
-        </button>
-      </div>
-    </div>}
+          <div className="cart-screen-empty">
+            <BsCart4 className="order-history-icon" />
+            <h4>Check back once you have created your first order!</h4>
+            <button onClick={() => navigate("/")} className="cart-shop">
+              Continue Shopping
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

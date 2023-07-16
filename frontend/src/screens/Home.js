@@ -5,7 +5,9 @@ import { useEffect, useReducer } from "react";
 import { FaTruck } from "react-icons/fa";
 import { FaHandsHelping } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa";
+import Error from "../components/Error";
 
+// Reducer function to manage the state for fetching products
 const productReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -20,25 +22,25 @@ const productReducer = (state, action) => {
         error: "",
       };
     case "FETCH_ERROR":
-      console.log("FETCH_ERROR");
       return {
         productz: [],
         loader: false,
-        error: "Error",
+        error: action.payload,
       };
     default:
-      console.log("productReducer Default");
       return state;
   }
 };
 
 export default function Home() {
+  // State management using the productReducer
   const [state, dispatch] = useReducer(productReducer, {
     productz: [],
     loader: false,
     error: "",
   });
 
+  // Fetch products data from the API on component mount
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -46,8 +48,7 @@ export default function Home() {
         const result = await axios.get("http://localhost:3019/api/products");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data.data });
       } catch (err) {
-        console.log("ERROR");
-        dispatch({ type: "FETCH_ERROR", error: "Error loading products" });
+        dispatch({ type: "FETCH_ERROR", payload: err });
       }
     };
     fetchData();
@@ -55,14 +56,12 @@ export default function Home() {
 
   return (
     <div>
+      {/* Background image container */}
       <div id="imgContainer">
         <div className="bg"></div>
       </div>
 
-      {/* <div className="homeTopSection">
-
-      </div> */}
-
+      {/* Information cards */}
       <div className="homeCardContainer">
         <div className="homeCard">
           <FaTruck className="homeIcon" />
@@ -72,7 +71,7 @@ export default function Home() {
         <div className="homeCard">
           <FaHandsHelping className="homeIcon" />
           <h4>24/7 Support</h4>
-          <p>Contact us anything for you problem</p>
+          <p>Contact us anything for your problem</p>
         </div>
         <div className="homeCard">
           <FaRegCreditCard className="homeIcon" />
@@ -81,18 +80,19 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Text section */}
       <div className="homeText">
         <h3>What We Offer</h3>
         <h6>
-          We provide all types of clothing and accessories with affordable
-          pricing
+          We provide all types of clothing and accessories with affordable pricing
         </h6>
       </div>
 
+      {/* Display products */}
       <div className="productsContainer">
         {state.loader ? (
-          <h4>Loading...</h4>
-        ) : (
+          <h4>Loading...</h4> 
+        ) : state.error !== "" ? <Error value={state.error}/> : (
           state.productz.map((data, index) => (
             <Product value={data} key={index} />
           ))

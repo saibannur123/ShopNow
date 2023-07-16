@@ -9,16 +9,15 @@ app.use(express.json());
 app.use(cors({origin: true, credentials: true}));
 
 productRouter.get("/", async (req, res) => {
-    
+
     try {
         const data = await Item.find({});
-        res.json({
+        res.status(200).json({
             status: "success",
             data: data
         })
     } catch (err) {
-        res.json({
-            status: "error",
+        res.status(500).json({
             message: "Could not fetch items"
         })
     }

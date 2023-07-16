@@ -1,3 +1,4 @@
+// Importing required libraries and components
 import React from "react";
 import { Store } from "../Context/storeContext";
 import { useContext, useEffect, useState } from "react";
@@ -10,16 +11,26 @@ import Alert from "react-bootstrap/Alert";
 import { HiShoppingBag } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
+// Defining the CartScreen component
 export default function CartScreen() {
+  // Accessing the state and dispatch functions from the store context
   const { state, dispatch } = useContext(Store);
+
+  // Extracting cart items from the state
   const cartItems = state.cart.cartItems;
+
+  // State to keep track of the total cost of items in the cart
   const [totalCost, setTotalCost] = useState();
+
+  // Hook to navigate to the shipping page
   const navigate = useNavigate();
 
+  // Function to remove an item from the cart
   const removeItem = (item) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: item });
   };
 
+  // Function to increase the quantity of an item in the cart
   const incQuantity = (item) => {
     const quantity = item.quantity + 1;
     dispatch({
@@ -28,6 +39,7 @@ export default function CartScreen() {
     });
   };
 
+  // Function to decrease the quantity of an item in the cart
   const decQuantity = (item) => {
     const quantity = item.quantity - 1;
     dispatch({
@@ -36,10 +48,12 @@ export default function CartScreen() {
     });
   };
 
+  // Function to redirect to the shipping page
   const redirectToShipping = () => {
     window.location.href = "/shipping";
   };
 
+  // Effect hook to update the total cost whenever the cart items change
   useEffect(() => {
     let tempPrice = 0;
     cartItems.map((item) => (tempPrice += item.value.price * item.quantity));
@@ -47,7 +61,6 @@ export default function CartScreen() {
   }, [cartItems]);
 
   return (
- 
     <div className="cart-container">
       <h1>Shopping Cart</h1>
 
@@ -81,7 +94,7 @@ export default function CartScreen() {
                   </button>
                 )}
                 &nbsp;&nbsp;&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;
-                {/* TODO: Change so it pulls  inStock from database so it is the latest */}
+                {/* TODO: Change so it pulls inStock from database so it is the latest */}
                 {item.quantity === item.value.inStock ? (
                   <button className="cart-icon-disabled" disabled>
                     <AiOutlinePlus />

@@ -2,6 +2,9 @@ import React, { useEffect, useContext, useReducer } from "react";
 import axios from "axios";
 import { Store } from "../Context/storeContext";
 import { Link } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
+import { useNavigate } from "react-router-dom";
+import { BsCart4} from "react-icons/bs";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -23,8 +26,8 @@ export default function OrderHistoryScreen() {
     orders: {},
     error: "",
   });
+  const navigate = useNavigate();
 
-  //console.log("State", stxte);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -57,38 +60,67 @@ export default function OrderHistoryScreen() {
     <>
       {state.loader ? (
         <h1>LOADING</h1>
-      ) : (
+      ) : state.orders.length !== 0 ? (
         <div className="OrderHistoryScreen">
           <h1>Order History</h1>
 
           <div className="OrderHistoryTable">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>DATE</th>
-        <th>TOTAL</th>
-        <th>ACTIONS</th>
-      </tr>
-    </thead>
-    <tbody>
-      {state.orders.map((item) => (
-        <tr key={item._id}>
-          <td>{item._id}</td>
-          <td>{item.createdAt.substring(0, 10)}</td>
-          <td>${item.totalPrice}</td>
-          <td>
-            <Link className={item.isPaid ? item.isDelivered ? 'btn btn-success' : 'btn btn-info' : 'btn btn-danger'} to={`/order/${item._id}`}>{item.isPaid ? item.isDelivered ? "None" : "View" : "Pay"}</Link>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>TOTAL</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {state.orders.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item._id}</td>
+                    <td>{item.createdAt.substring(0, 10)}</td>
+                    <td>${item.totalPrice}</td>
+                    <td>
+                      <Link
+                        className={
+                          item.isPaid
+                            ? item.isDelivered
+                              ? "btn btn-success"
+                              : "btn btn-info"
+                            : "btn btn-danger"
+                        }
+                        to={`/order/${item._id}`}
+                      >
+                        {item.isPaid
+                          ? item.isDelivered
+                            ? "None"
+                            : "View"
+                          : "Pay"}
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      )}
+      ) : 
+      
+      <div className="OrderHistoryScreen">
+            <h1>Order History</h1>
+
+      <Alert variant="info" className="cart-error">
+        No Purchase History
+      </Alert>
+
+      <div className="cart-screen-empty">
+      <BsCart4 className="order-history-icon" />
+        <h4>Check back once you have created your first order!</h4>
+        <button onClick={() => navigate("/")} className="cart-shop">
+          Continue Shopping
+        </button>
+      </div>
+    </div>}
     </>
   );
 }

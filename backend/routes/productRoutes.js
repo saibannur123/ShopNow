@@ -73,7 +73,7 @@ productRouter.get("/search", async (req, res) => {
         }
       }
 
-    if(query && query  !== 'all'){
+    if(query && query !== 'all'){
         andArray.name = query; 
     }
 

@@ -159,7 +159,7 @@ export default function Search() {
                     1 stars and above
                   </Link>
                 </li>
-                <li className={'0' === rating ? "active-filter" : ""}>
+                <li className={('0' === rating || 'all' === rating) ? "active-filter" : ""}>
                   <Link to={getFilterURL({ rating: "0" })}>
                     0 stars and above
                   </Link>

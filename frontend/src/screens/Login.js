@@ -13,16 +13,18 @@ export default function Login() {
   const navigate = useNavigate();
   const [inputErr, setInputErr] = useState("");
 
+  // Function to handle login form submission
   const loginHandler = () => {
     if (email === "") {
       setInputErr("Please enter your email");
     } else if (password === "") {
       setInputErr("Please enter your password");
     } else {
-      login();
+      login(); // Call the login function when the form is valid
     }
   };
 
+  // Function to make an async login request to the server
   const login = async () => {
     try {
       const response = await axios.post("http://localhost:3019/login-user", {
@@ -31,19 +33,23 @@ export default function Login() {
       });
 
       if (response.data.auth) {
+        // If login is successful, save user info and token to local storage,
+        // dispatch the SIGN_IN action to the context, and navigate to the home page.
         localStorage.setItem("userInfo", JSON.stringify(response.data));
-        localStorage.setItem("token", "Beared " + response.data.token);
+        localStorage.setItem("token", "Bearer " + response.data.token);
         dispatch({ type: "SIGN_IN", payload: response.data });
         navigate("/");
       } else {
+        // Handle unsuccessful login if necessary
       }
     } catch (err) {
+      // Handle errors during login process
       if (err.response.status === 404) {
         setInputErr(err.response.data.message);
         setPassword("");
       } else {
         console.log("Error with login");
-        setInputErr("An unexpected error has occured");
+        setInputErr("An unexpected error has occurred");
         setPassword("");
       }
     }

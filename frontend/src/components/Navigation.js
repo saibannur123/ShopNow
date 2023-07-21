@@ -52,7 +52,6 @@ export default function Navigation() {
             </Nav.Link>
           </Nav>
           <Nav>
-            {/* Conditional rendering based on whether the user is logged in or not */}
             {!state.userInfo ? (
               // If the user is not logged in, show the Sign-in link
               <Nav.Link as={Link} to="/login-page">
@@ -61,7 +60,6 @@ export default function Navigation() {
             ) : (
               // If the user is logged in, show the user's name in a dropdown menu
               <NavDropdown title={state.userInfo.name} id="basic-nav-dropdown">
-                {/* Links for order history and changing password */}
                 <NavDropdown.Item as={Link} to="/orderhistory">
                   Order History
                 </NavDropdown.Item>
@@ -69,7 +67,6 @@ export default function Navigation() {
                   Change Password
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                {/* Logout option */}
                 <NavDropdown.Item onClick={logOut}>Log Out</NavDropdown.Item>
               </NavDropdown>
             )}

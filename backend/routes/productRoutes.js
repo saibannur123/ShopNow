@@ -74,7 +74,9 @@ productRouter.get("/search", async (req, res) => {
       }
 
     if(query && query !== 'all'){
-        andArray.name = query; 
+        const regex = new RegExp(query, 'i'); 
+        andArray.name = { $regex: regex }; 
+        
     }
 
     if(rating && rating != 0 && rating !== 'all' && !isNaN(rating)){

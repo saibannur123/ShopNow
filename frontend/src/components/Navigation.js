@@ -89,7 +89,7 @@ export default function Navigation() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Button variant="outline-success" onClick={performSearch}>Search</Button>
+            <Button variant="outline-secondary" onClick={performSearch}>Search</Button>
           </Form>
           
         </Navbar.Collapse>

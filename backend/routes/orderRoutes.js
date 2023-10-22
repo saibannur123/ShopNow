@@ -120,8 +120,7 @@ orderRouter.post(
     type: "application/json",
   }),
   async (req, res) => {
-    const endpointSecret =
-      "whsec_ea1fa76ec3adad66b93aebf08e4b33b2c5105cfdaf12e0b122e03c07d92e75ea";
+
 
     const sig = req.headers["stripe-signature"];
 

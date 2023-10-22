@@ -16,7 +16,7 @@ Used:
 - Stripe API
 - & Much More!
 
-## Screenshots of Applications
+## Screenshots of Application
 
 
 <img width="1424" alt="Screenshot 2023-10-22 at 12 01 08 PM" src="https://github.com/saibannur123/ecommerce-app/assets/58525723/520d705f-6b7b-47ae-bd08-1c0fb280ada1">

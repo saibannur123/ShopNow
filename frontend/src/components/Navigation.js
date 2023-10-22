@@ -6,14 +6,12 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Store } from "../Context/storeContext";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function Navigation() {
-
   const { state, dispatch } = useContext(Store); // Accessing the global state and dispatch function from the context
-  
+
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
@@ -28,9 +26,11 @@ export default function Navigation() {
   };
 
   const performSearch = () => {
-    navigate(`/search?category=all&query=${search}&rating=all&price=all&option=all&page=1`);
+    navigate(
+      `/search?category=all&query=${search}&rating=all&price=all&option=all&page=1`
+    );
     setSearch("");
-  }
+  };
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
@@ -46,7 +46,6 @@ export default function Navigation() {
             {
               <Nav.Link as={Link} to="/cart">
                 Cart{" "}
-
                 {state.cart.cartItems.length > 0 && (
                   <span className="cartNumber">
                     {state.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -89,32 +88,12 @@ export default function Navigation() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Button variant="outline-secondary" onClick={performSearch}>Search</Button>
+            <Button variant="outline-secondary" onClick={performSearch}>
+              Search
+            </Button>
           </Form>
-          
         </Navbar.Collapse>
-        
       </Container>
     </Navbar>
-
-  //   <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-  //   <Container>
-  //     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-  //     <Nav className="me-auto">
-  //       <Nav.Link as={Link} to="/search" >View All</Nav.Link>
-  //       <Nav.Link href="#features">Features</Nav.Link>
-  //       <Nav.Link href="#pricing">Pricing</Nav.Link>
-  //     </Nav>
-  //     <Form className="d-flex">
-  //           <Form.Control
-  //             type="search"
-  //             placeholder="Search"
-  //             className="me-2"
-  //             aria-label="Search"
-  //           />
-  //           <Button variant="outline-success">Search</Button>
-  //         </Form>
-  //   </Container>
-  // </Navbar>
   );
 }

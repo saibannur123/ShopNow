@@ -5,9 +5,9 @@ import { Store } from "../Context/storeContext";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
-import { BsCart4} from "react-icons/bs";
+import { BsCart4 } from "react-icons/bs";
 import Error from "../components/Error";
-import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from "react-loader-spinner";
 
 // Reducer function to handle state changes for fetching orders
 const reducer = (state, action) => {
@@ -69,19 +69,19 @@ export default function OrderHistoryScreen() {
 
   return (
     <>
-      {state.loader ? ( 
+      {state.loader ? (
         <div className="load-container margin-top">
-        <RotatingLines
-        strokeColor="grey"
-        strokeWidth="5"
-        animationDuration="0.75"
-        width="36"
-        visible={true}
-        />
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="36"
+            visible={true}
+          />
         </div>
-      ) : state.error !== "" ? ( 
+      ) : state.error !== "" ? (
         <Error value={state.error} />
-      ) : state.orders.length !== 0 ? ( 
+      ) : state.orders.length !== 0 ? (
         <div className="OrderHistoryScreen">
           <h1>Order History</h1>
 

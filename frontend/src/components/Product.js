@@ -7,7 +7,6 @@ import axios from "axios";
 export default function Product(props) {
   const { state, dispatch } = useContext(Store);
 
-  // TODO: WHEN CHANGING THE QUANTITY FEATURE, I MAY HAVE INTRODUCED SOME BUGS! WATCH OUT
   const addToCart = async (item) => {
     const existItem = state.cart.cartItems.find(
       (x) => x.value._id === props.value._id
@@ -15,8 +14,6 @@ export default function Product(props) {
     console.log("cart", state.cart.cartItems);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    // TODO: Introduce this code below similar to AMAZON website example
-    // TODO: BUG NOT READING IN/LOADING IN ALL DATA INTO CART!!
     const { data } = await axios.get(
       `http://localhost:3019/api/products/${item.value._id}`
     );

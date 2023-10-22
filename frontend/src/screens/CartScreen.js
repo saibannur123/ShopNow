@@ -93,7 +93,6 @@ export default function CartScreen() {
                   </button>
                 )}
                 &nbsp;&nbsp;&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;
-                {/* TODO: Change so it pulls inStock from database so it is the latest */}
                 {item.quantity === item.value.inStock ? (
                   <button className="cart-icon-disabled" disabled>
                     <AiOutlinePlus />

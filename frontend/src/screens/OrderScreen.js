@@ -6,7 +6,7 @@ import { Store } from "../Context/storeContext";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import Error from "../components/Error";
-import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from "react-loader-spinner";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -39,10 +39,9 @@ export default function OrderScreen() {
       try {
         const result = await axios.get(
           `http://localhost:3019/api/orders/${orderId}`,
-          { 
-            headers: { authorization: `Bearer ${stxte.userInfo.token}` }, 
-          },
-          
+          {
+            headers: { authorization: `Bearer ${stxte.userInfo.token}` },
+          }
         );
         console.log("Result", result.data.order);
         dispatch({ type: "ORDER_SUCCESS", payload: result.data.order });
@@ -76,15 +75,17 @@ export default function OrderScreen() {
     <>
       {state.loader ? (
         <div className="load-container margin-top">
-        <RotatingLines
-        strokeColor="grey"
-        strokeWidth="5"
-        animationDuration="0.75"
-        width="36"
-        visible={true}
-        />
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="36"
+            visible={true}
+          />
         </div>
-      ) : state.error !== "" ? <Error value={state.error} /> : (
+      ) : state.error !== "" ? (
+        <Error value={state.error} />
+      ) : (
         <Container className="orderScreen">
           <Row>
             <h1>Order {state.order[0]._id}</h1>

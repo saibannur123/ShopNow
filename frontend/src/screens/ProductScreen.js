@@ -4,7 +4,7 @@ import { useEffect, useReducer, useContext } from "react";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import { Store } from "../Context/storeContext";
-import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from "react-loader-spinner";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -39,10 +39,6 @@ export default function ProductScreen() {
   });
   const { state: stxte, dispatch: dxpatch } = useContext(Store);
 
-  //   const addToCart = () => {
-  //     dxpatch({ type: "ADD_TO_CART", payload: state.product });
-  //   };
-
   const addToCart = async () => {
     console.log("STATE", state);
     console.log("STXTE", stxte);
@@ -52,8 +48,6 @@ export default function ProductScreen() {
     console.log("ExistItem", existItem);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     console.log(existItem ? existItem.quantity + 1 : 1);
-    // TODO: Introduce this code below similar to AMAZON website example
-    // TODO: BUG NOT READING IN/LOADING IN ALL DATA INTO CART!!
     const { data } = await axios.get(
       `http://localhost:3019/api/products/${state.product._id}`
     );
@@ -101,13 +95,13 @@ export default function ProductScreen() {
     <div className="productScreen">
       {state.loader ? (
         <div className="load-container margin-top">
-        <RotatingLines
-        strokeColor="grey"
-        strokeWidth="5"
-        animationDuration="0.75"
-        width="36"
-        visible={true}
-        />
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="36"
+            visible={true}
+          />
         </div>
       ) : state.error !== "" ? (
         <div className="productScreenNotFound">

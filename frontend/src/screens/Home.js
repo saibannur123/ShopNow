@@ -6,7 +6,7 @@ import { FaTruck } from "react-icons/fa";
 import { FaHandsHelping } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa";
 import Error from "../components/Error";
-import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from "react-loader-spinner";
 
 // Reducer function to manage the state for fetching products
 const productReducer = (state, action) => {
@@ -82,22 +82,25 @@ export default function Home() {
       <div className="homeText">
         <h3>What We Offer</h3>
         <h6>
-          We provide all types of clothing and accessories with affordable pricing
+          We provide all types of clothing and accessories with affordable
+          pricing
         </h6>
       </div>
 
       <div className="productsContainer">
         {state.loader ? (
           <div className="load-container">
-          <RotatingLines
-          strokeColor="grey"
-          strokeWidth="5"
-          animationDuration="0.75"
-          width="36"
-          visible={true}
-        />
-        </div>
-        ) : state.error !== "" ? <Error value={state.error}/> : (
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="36"
+              visible={true}
+            />
+          </div>
+        ) : state.error !== "" ? (
+          <Error value={state.error} />
+        ) : (
           state.productz.map((data, index) => (
             <Product value={data} key={index} />
           ))

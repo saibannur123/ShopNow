@@ -37,7 +37,10 @@ export default function ChangePassword() {
 
     try {
       // Make an API call to change the password
-      const result = await axios.post("http://localhost:3019/api/user/change-password", { email, currentPass, newPass });
+      const result = await axios.post(
+        "http://localhost:3019/api/user/change-password",
+        { email, currentPass, newPass }
+      );
       alert(result.data.message); // Show the success message returned from the API
     } catch (err) {
       setInputErr(err.response.data.message); // Display the error message received from the API

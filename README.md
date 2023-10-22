@@ -1,4 +1,4 @@
-# ShopNow - An E-commerce Application
+# ShopNow
 
 Welcome to this amazing online apparel store powered by the MERN Stack (MongoDB, Express, React, & Node). 
 This platform offers an array of features, including user account creation for seamless order management and tracking. 

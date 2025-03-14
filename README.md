@@ -16,7 +16,68 @@ Used:
 - Stripe API
 - & Much More!
 
-## Screenshots of Application
+# Quick Start
+
+### 1. Set up the Frontend
+
+1. Navigate to the `frontend` directory:
+    ```bash
+    cd frontend
+    ```
+
+2. Install the necessary dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Start the frontend application:
+    ```bash
+    npm start
+    ```
+
+    This will start the application at [http://localhost:3000](http://localhost:3000).
+
+### 2. Set up the Backend
+
+1. The backend uses MongoDB, so you'll need to have a MongoDB database configured either locally or using MongoDB Atlas.
+
+2. Create a `.env` file in the `backend` folder and add your MongoDB database URL to the variable `MONGODB_URI`:
+    ```
+    MONGODB_URI=your_database_url
+    ```
+
+3. Navigate to the `backend` directory in a different terminal window:
+    ```bash
+    cd backend
+    ```
+
+4. Install the necessary dependencies:
+    ```bash
+    npm install
+    ```
+
+5. Start the backend application:
+    ```bash
+    npm start
+    ```
+
+    The backend will start running.
+
+### 3. Access the Application
+
+At this point, both the frontend and backend should be running. You can use the application in your browser at [http://localhost:3000](http://localhost:3000).
+
+### 4. (Optional) Seed the Database
+
+To load some dummy data into your database, you can send a `GET` request to:
+
+```
+http://localhost:3019/api/seed
+```
+
+
+
+# Screenshots of Application
 
 
 <img width="1424" alt="Screenshot 2023-10-22 at 12 01 08 PM" src="https://github.com/saibannur123/ShopNow/assets/58525723/deba7488-bd7a-4a4b-812e-16374ca95f79">
